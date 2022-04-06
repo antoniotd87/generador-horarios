@@ -6,7 +6,7 @@ Descomprimes en la carpeta que quieras para tener el proyecto listo
 
 ## Instalacion
 
-Debes tener instalado composer y node js, si no los tienes, ahi que instalarlos [composer](https://getcomposer.org/) y [composer](https://nodejs.org/es/).
+Debes tener instalado composer y node js, si no los tienes, ahi que instalarlos [composer](https://getcomposer.org/) y [nodejs](https://nodejs.org/es/).
 
 Despues abrir el proyecto en visual studio code, abrir la terminal e instalar las dependecias de composer y node js con los siguientes comandos.
 
