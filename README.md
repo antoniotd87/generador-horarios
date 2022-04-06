@@ -17,6 +17,10 @@ Una vez instalados, configurar la base de datos, primero hacer una copia del arc
 
     copy .env.example .env
 
+Crea una llave de encriptacion de laravel
+
+    php artisan key:generate
+
 Despues crear una base de dattos en xammp, sin tablas
 
 En el archivo .env configurar la base de datos en la variable DB_DATABSE, cambiar laravel por el nombre de la base de datos
