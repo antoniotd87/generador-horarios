@@ -1,8 +1,8 @@
 ## Inicio
 
-Primero tienes que descargar el codigo con el boton Download as ZIP
+Primero tienes que descargar el codigo con el boton verde que dice Code en la parte de arriba, despues el boton Download as ZIP
 
-Descomprimes en la carpeta que quieras para tener el proyecto
+Descomprimes en la carpeta que quieras para tener el proyecto listo
 
 ## Instalacion
 
