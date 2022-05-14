@@ -35,7 +35,7 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
 										<th>Uid</th>
 										<th>Docente</th>
 										<th>Grado De Estudios</th>
@@ -48,7 +48,7 @@
                                     @foreach ($maestros as $maestro)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 											<td>{{ $maestro->uid }}</td>
 											<td>{{ $maestro->docente }}</td>
 											<td>{{ $maestro->grado_de_estudios }}</td>
@@ -57,7 +57,7 @@
                                             <td>
                                                 <form action="{{ route('maestros.destroy',$maestro->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('maestros.show',$maestro->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('maestros.edit',$maestro->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                    <a class="btn btn-sm btn-warning" href="{{ route('maestros.edit',$maestro->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>

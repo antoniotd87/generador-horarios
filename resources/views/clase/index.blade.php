@@ -35,7 +35,7 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
 										<th>Maestro Id</th>
 										<th>Materia Id</th>
 										<th>Grupo Id</th>
@@ -47,7 +47,7 @@
                                     @foreach ($clases as $clase)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 											<td>{{ $clase->maestro_id }}</td>
 											<td>{{ $clase->materia_id }}</td>
 											<td>{{ $clase->grupo_id }}</td>
@@ -55,7 +55,7 @@
                                             <td>
                                                 <form action="{{ route('clases.destroy',$clase->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('clases.show',$clase->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('clases.edit',$clase->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                    <a class="btn btn-sm btn-warning" href="{{ route('clases.edit',$clase->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>

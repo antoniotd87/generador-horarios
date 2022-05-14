@@ -207,7 +207,7 @@
 .widget-activity-three .timeline-line .item-timeline .t-dot { position: relative; }
 
 .widget-activity-three .timeline-line .item-timeline .t-dot div {
-    background: #1b55e2;
+    background: #8cbe1d;
     border-radius: 50%;
     padding: 5px;
     margin-right: 11px;
@@ -217,8 +217,8 @@
     width: 36px;
 }
 .widget-activity-three .timeline-line .item-timeline .t-dot div.t-primary {
-    background-color: #1b55e2;
-    box-shadow: 0 10px 20px -10px #1b55e2;
+    background-color: #8cbe1d;
+    box-shadow: 0 10px 20px -10px #8cbe1d;
 }
 .widget-activity-three .timeline-line .item-timeline .t-dot div.t-success {
     background-color: #009688;
@@ -270,7 +270,7 @@
     color: #888ea8;
 }
 .widget-activity-three .timeline-line .item-timeline .t-content div.tags {
-    
+
 }
 .widget-activity-three .timeline-line .item-timeline .t-content div.tags .badge {
     padding: 2px 4px;
@@ -280,8 +280,8 @@
 }
 .widget-activity-three .timeline-line .item-timeline .t-content div.tags .badge-primary {
     background-color: #c2d5ff;
-    color: #1b55e2;
-    
+    color: #8cbe1d;
+
 }
 
 .widget-activity-three .timeline-line .item-timeline .t-content div.tags .badge-success {
@@ -292,7 +292,7 @@
 .widget-activity-three .timeline-line .item-timeline .t-content div.tags .badge-warning {
     background-color: #ffeccb;
     color: #e2a03f;
-    
+
 }
 .widget-activity-three .timeline-line .item-timeline .t-dot:after {
     content: '';
@@ -350,8 +350,8 @@
     background: #c2d5ff;
 }
 .widget-one_hybrid.widget-followers .widget-heading .w-icon {
-    color: #1b55e2;
-    border: 1px solid #1b55e2;
+    color: #8cbe1d;
+    border: 1px solid #8cbe1d;
 }
 .widget-one_hybrid.widget-referral {
     background: #ffe1e2;
@@ -478,7 +478,7 @@
     padding: 0 20px;
 }
 .widget-card-one .widget-content .w-action svg {
-    color: #1b55e2;
+    color: #8cbe1d;
     fill: #c2d5ff;
 }
 .widget-card-one .widget-content .w-action span {
@@ -547,7 +547,7 @@
     background: #ffeccb ;
 }
 .widget-four .widget-content .browser-list:nth-child(1) .w-icon svg {
-    color: #1b55e2;
+    color: #8cbe1d;
 }
 .widget-four .widget-content .browser-list:nth-child(2) .w-icon svg {
     color: #e7515a;
@@ -651,12 +651,12 @@
     border: 2px solid #e0e6ed;
 }
 .widget-card-two .card-bottom-section .img-group img:not(:last-child) {
-    margin-right: 5px;    
+    margin-right: 5px;
 }
 .widget-card-two .card-bottom-section a {
     display: block;
     margin-top: 18px;
-    background: #1b55e2;
+    background: #8cbe1d;
     color: #fff;
     padding: 10px 10px;
     transform: none;
@@ -668,7 +668,7 @@
 }
 .widget-card-two .card-bottom-section a.btn:hover,
 .widget-card-two .card-bottom-section a.btn:focus  {
-    border-color: #1b55e2;
+    border-color: #8cbe1d;
 }
 
 /*
@@ -727,7 +727,7 @@
 .widget-five .w-content div .task-left {
     margin-bottom: 0;
     font-size: 30px;
-    color: #1b55e2;
+    color: #8cbe1d;
     background: #c2d5ff;
     font-weight: 600;
     border-radius: 50%;

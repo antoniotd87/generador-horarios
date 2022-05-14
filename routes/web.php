@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+Route::get('/', 'HomeController@inicio');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('maestros', 'MaestroController');
 Route::resource('semestres', 'SemestreController');

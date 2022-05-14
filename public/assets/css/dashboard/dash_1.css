@@ -94,7 +94,7 @@
 
 .widget-one {
     position: relative;
-    background: #1b55e2;
+    background: #8cbe1d;
     padding: 0;
     border-radius: 8px;
     height: 100%;
@@ -122,7 +122,7 @@
 }
 .widget-one .w-numeric-value svg {
     display: block;
-    color: #1b55e2;
+    color: #8cbe1d;
     width: 20px;
     height: 20px;
 }
@@ -271,7 +271,7 @@
     font-weight: 600;
     padding: 5px 7px;
     background: #c2d5ff;
-    color: #1b55e2;
+    color: #8cbe1d;
     border-radius: 4px;
 }
 
@@ -440,7 +440,7 @@
     height: 8px;
     top: 5px;
     left: 5px;
-    transform: translateX(-50%); 
+    transform: translateX(-50%);
     border-color: #e0e6ed;
     background: #bfc9d4;
     z-index: 1;
@@ -467,7 +467,7 @@
     border-radius: 0;
 }
 .widget-activity-four .timeline-line .item-timeline.timeline-primary .t-dot:before {
-    background-color: #1b55e2;
+    background-color: #8cbe1d;
     border-color: rgb(164, 189, 247);
 }
 .widget-activity-four .timeline-line .item-timeline.timeline-success .t-dot:before {
@@ -484,7 +484,7 @@
     border-color: rgb(159, 163, 187);
 }
 .widget-activity-four .timeline-line .item-timeline.timeline-secondary .t-dot:before {
-    background: #1b55e2;
+    background: #8cbe1d;
     border-color: #c2d5ff;
 }
 .widget-activity-four .timeline-line .item-timeline.timeline-warning .t-dot:before {
@@ -540,7 +540,7 @@
     min-width: 80px;
     max-width: 80px;
     font-size: 13px;
-    font-weight: 600; 
+    font-weight: 600;
     color: #acb0c3;
     letter-spacing: 1px;
 }
@@ -552,7 +552,7 @@
     background: transparent;
     box-shadow: none;
     padding: 0;
-    color: #1b55e2;
+    color: #8cbe1d;
     font-weight: 600;
     letter-spacing: 0.5px;
     border: none;
@@ -582,7 +582,7 @@
     font-size: 20px;
     letter-spacing: 1px;
     margin-bottom: 10px;
-    color: #1b55e2;
+    color: #8cbe1d;
 }
 .widget-account-invoice-one .invoice-box .acc-amount {
     text-align: center;
@@ -680,7 +680,7 @@
     border-top-right-radius: 6px;
 }
 .widget-table-two .table > thead > tr > th .th-content {
-    color: #1b55e2;
+    color: #8cbe1d;
     font-weight: 600;
     font-size: 14px;
     letter-spacing: 1px;
@@ -794,7 +794,7 @@
     margin-left: 10px;
 }
 .widget-table-three .table > thead > tr > th:last-child .th-content {
-    text-align: right; 
+    text-align: right;
     margin-right: 10px;
 }
 .widget-table-three .table > thead > tr > th {
@@ -825,7 +825,7 @@
     border-top-right-radius: 6px;
 }
 .widget-table-three .table > thead > tr > th .th-content {
-    color: #1b55e2;
+    color: #8cbe1d;
     font-weight: 600;
     font-size: 14px;
     letter-spacing: 1px;
@@ -900,8 +900,8 @@
     border-radius: 6px;
 }
 .widget-table-three .table .td-content .tag-primary {
-    color: #1b55e2;
-    border: 1px dashed #1b55e2;
+    color: #8cbe1d;
+    border: 1px dashed #8cbe1d;
     background: #c2d5ff;
 }
 .widget-table-three .table .td-content .tag-success {

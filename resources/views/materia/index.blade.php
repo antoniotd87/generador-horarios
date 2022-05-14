@@ -67,7 +67,7 @@
                                                     <a class="btn btn-sm btn-primary "
                                                         href="{{ route('materias.show', $materia->id) }}"><i
                                                             class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success"
+                                                    <a class="btn btn-sm btn-warning"
                                                         href="{{ route('materias.edit', $materia->id) }}"><i
                                                             class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf

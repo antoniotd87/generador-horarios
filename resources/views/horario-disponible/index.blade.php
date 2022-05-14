@@ -35,7 +35,7 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
 										<th>Maestro Id</th>
 										<th>Dia Id</th>
 										<th>Hora Id</th>
@@ -47,7 +47,7 @@
                                     @foreach ($horarioDisponibles as $horarioDisponible)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 											<td>{{ $horarioDisponible->maestro_id }}</td>
 											<td>{{ $horarioDisponible->dia_id }}</td>
 											<td>{{ $horarioDisponible->hora_id }}</td>
@@ -55,7 +55,7 @@
                                             <td>
                                                 <form action="{{ route('horario-disponibles.destroy',$horarioDisponible->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('horario-disponibles.show',$horarioDisponible->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('horario-disponibles.edit',$horarioDisponible->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                    <a class="btn btn-sm btn-warning" href="{{ route('horario-disponibles.edit',$horarioDisponible->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>

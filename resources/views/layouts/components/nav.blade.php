@@ -12,8 +12,8 @@
             </svg></a>
 
         <div class="nav-logo align-self-center">
-            <a class="navbar-brand" href="index.html"><img alt="logo" src="assets/img/90x90.jpg"> <span
-                    class="navbar-brand-name">HORARIOS ING INF TESFFP</span></a>
+            <a class="navbar-brand" href="{{ route('home') }}"><img alt="logo" src="{{ asset('img/logo.png') }}">
+                <span class="navbar-brand-name">HORARIOS ING INF TESFFP</span></a>
         </div>
 
         <ul class="navbar-item flex-row nav-dropdowns ml-auto">
@@ -21,7 +21,6 @@
                 <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="user-profile-dropdown"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="media">
-                        <img src="assets/img/90x90.jpg" class="img-fluid" alt="admin-profile">
                         <div class="media-body align-self-center">
                             <h6><span>Hola,</span> {{ Auth::user()->name }}</h6>
                         </div>

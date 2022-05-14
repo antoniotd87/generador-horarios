@@ -57,7 +57,7 @@
                                             <td>
                                                 <form action="{{ route('grupos.destroy', $grupo->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('grupos.show',$grupo->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success"
+                                                    <a class="btn btn-sm btn-warning"
                                                         href="{{ route('grupos.edit', $grupo->id) }}"><i
                                                             class="fa fa-fw fa-edit"></i> Editar</a>
                                                     @csrf
