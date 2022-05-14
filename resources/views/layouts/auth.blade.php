@@ -24,21 +24,15 @@
 <body class="form">
 
     <div class="form-container">
-        <div class="form-form">
+        <div class="form-form w-100">
             <div class="form-form-wrap">
                 <div class="form-container">
                     <div class="form-content">
-
                         @yield('content')
-
                     </div>
                 </div>
             </div>
         </div>
-        {{-- <div class="form-image">
-            <div class="l-image">
-            </div>
-        </div> --}}
     </div>
 
     <script src="{{ asset('assets/js/libs/jquery-3.1.1.min.js') }}"></script>

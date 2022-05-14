@@ -13,10 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return redirect('/home');
-});
+}); */
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('maestros', 'MaestroController');
+Route::resource('semestres', 'SemestreController');
+Route::resource('materias', 'MateriaController');
+Route::resource('horas', 'HoraController');
+Route::resource('dias', 'DiaController');
+Route::resource('horario-disponibles', 'HorarioDisponibleController');
+Route::resource('grupos', 'GrupoController');
+Route::resource('materia-grupos', 'MateriaGrupoController');
+Route::resource('clases', 'ClaseController');
+Route::resource('horarios', 'HorarioController');

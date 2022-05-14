@@ -19,7 +19,7 @@
                     </div>
 
                     <div class="card-body">
-                        
+
                         <div class="form-group">
                             <strong>Clave:</strong>
                             {{ $materia->clave }}
@@ -49,6 +49,7 @@
                             {{ $materia->especialidad }}
                         </div>
 
+                        grupos de la materia
                     </div>
                 </div>
             </div>

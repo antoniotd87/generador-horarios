@@ -20,11 +20,13 @@ use Illuminate\Database\Eloquent\Model;
  */
 class MateriaGrupo extends Model
 {
-    
+
     static $rules = [
 		'materia_id' => 'required',
 		'grupo_id' => 'required',
     ];
+
+    public $table = 'materia_grupo';
 
     protected $perPage = 20;
 
@@ -43,7 +45,7 @@ class MateriaGrupo extends Model
     {
         return $this->hasOne('App\Models\Grupo', 'id', 'grupo_id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -51,6 +53,6 @@ class MateriaGrupo extends Model
     {
         return $this->hasOne('App\Models\Materia', 'id', 'materia_id');
     }
-    
+
 
 }

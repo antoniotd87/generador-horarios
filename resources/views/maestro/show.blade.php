@@ -19,7 +19,7 @@
                     </div>
 
                     <div class="card-body">
-                        
+
                         <div class="form-group">
                             <strong>Uid:</strong>
                             {{ $maestro->uid }}
@@ -36,7 +36,12 @@
                             <strong>Division:</strong>
                             {{ $maestro->division }}
                         </div>
-
+                        <div class="form-group">
+                            @livewire('horario-disponible', ['maestro' => $maestro], key($maestro->id))
+                        </div>
+                        <div class="form-group">
+                            Agregar clases
+                        </div>
                     </div>
                 </div>
             </div>

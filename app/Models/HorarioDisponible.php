@@ -22,12 +22,14 @@ use Illuminate\Database\Eloquent\Model;
  */
 class HorarioDisponible extends Model
 {
-    
+
     static $rules = [
 		'maestro_id' => 'required',
 		'dia_id' => 'required',
 		'hora_id' => 'required',
     ];
+
+    public $table = 'horario_disponible';
 
     protected $perPage = 20;
 
@@ -46,7 +48,7 @@ class HorarioDisponible extends Model
     {
         return $this->hasOne('App\Models\Dia', 'id', 'dia_id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -54,7 +56,7 @@ class HorarioDisponible extends Model
     {
         return $this->hasOne('App\Models\Hora', 'id', 'hora_id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -62,6 +64,6 @@ class HorarioDisponible extends Model
     {
         return $this->hasOne('App\Models\Maestro', 'id', 'maestro_id');
     }
-    
+
 
 }
