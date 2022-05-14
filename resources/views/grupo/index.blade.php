@@ -39,6 +39,8 @@
 
                                         <th>Grupo</th>
                                         <th>Semestre</th>
+                                        <th>Gefe de grupo</th>
+                                        <th>Total de Alumnos</th>
 
                                         <th></th>
                                     </tr>
@@ -50,7 +52,8 @@
 
                                             <td>{{ $grupo->grupo }}</td>
                                             <td>{{ $grupo->semestre->semestre }}</td>
-
+											<td>{{ $grupo->jefe_de_grupo }}</td>
+											<td>{{ $grupo->total }}</td>
                                             <td>
                                                 <form action="{{ route('grupos.destroy', $grupo->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('grupos.show',$grupo->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>

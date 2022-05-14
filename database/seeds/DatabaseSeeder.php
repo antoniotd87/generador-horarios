@@ -30,10 +30,10 @@ class DatabaseSeeder extends Seeder
         $segundoSemestre = Semestre::create([
             'semestre' => 'Segundo'
         ]);
-        $primerSemestre->grupos()->create(['grupo' => '101']);
-        $primerSemestre->grupos()->create(['grupo' => '102']);
-        $segundoSemestre->grupos()->create(['grupo' => '201']);
-        $segundoSemestre->grupos()->create(['grupo' => '202']);
+        $primerSemestre->grupos()->create(['grupo' => '101','jefe_de_grupo'=>'Jefe 1','total'=>40]);
+        $primerSemestre->grupos()->create(['grupo' => '102','jefe_de_grupo'=>'Jefe 2','total'=>40]);
+        $segundoSemestre->grupos()->create(['grupo' => '201','jefe_de_grupo'=>'Jefe 3','total'=>40]);
+        $segundoSemestre->grupos()->create(['grupo' => '202','jefe_de_grupo'=>'Jefe 4','total'=>40]);
 
         Hora::create(['hora' => '7:00 AM']);
         Hora::create(['hora' => '8:00 AM']);

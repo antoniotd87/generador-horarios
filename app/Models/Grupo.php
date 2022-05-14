@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property $id
  * @property $grupo
+ * @property $jefe_de_grupo
  * @property $semestre_id
  * @property $created_at
  * @property $updated_at
@@ -25,6 +26,7 @@ class Grupo extends Model
     
     static $rules = [
 		'grupo' => 'required',
+		'jefe_de_grupo' => 'required',
 		'semestre_id' => 'required',
     ];
 
@@ -35,7 +37,7 @@ class Grupo extends Model
      *
      * @var array
      */
-    protected $fillable = ['grupo','semestre_id'];
+    protected $fillable = ['grupo','jefe_de_grupo','semestre_id'];
 
 
     /**

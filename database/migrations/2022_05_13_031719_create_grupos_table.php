@@ -16,6 +16,8 @@ class CreateGruposTable extends Migration
         Schema::create('grupos', function (Blueprint $table) {
             $table->id();
             $table->string('grupo');
+            $table->string('jefe_de_grupo');
+            $table->integer('total');
             $table->foreignId('semestre_id')->constrained();
             $table->timestamps();
         });

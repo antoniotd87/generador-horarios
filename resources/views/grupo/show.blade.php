@@ -28,6 +28,14 @@
                             <strong>Semestre:</strong>
                             {{ $grupo->semestre->semestre }}
                         </div>
+                        <div>
+                            <strong>Jefe De Grupo:</strong>
+                            {{ $grupo->jefe_de_grupo }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Total:</strong>
+                            {{ $grupo->total }}
+                        </div>
                         <p>Lista de materias del grupo</p>
                         <ul class="list-group">
                             @foreach ($grupo->materiaGrupos as $materiaAsignada)
@@ -38,7 +46,8 @@
                                         ->first();
                                 @endphp
                                 <li class="list-group-item">{{ $materiaAsignada->materia->materia }} <strong>Impartido
-                                    por:</strong> {{ $docente ? $docente->maestro->docente:'No especificado aun.' }}</li>
+                                        por:</strong> {{ $docente ? $docente->maestro->docente : 'No especificado aun.' }}
+                                </li>
                             @endforeach
                         </ul>
                     </div>

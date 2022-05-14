@@ -36,6 +36,11 @@
                             <strong>Division:</strong>
                             {{ $maestro->division }}
                         </div>
+                        @if ($message = Session::get('success'))
+                            <div class="alert alert-success">
+                                <p>{{ $message }}</p>
+                            </div>
+                        @endif
                         <div class="row">
                             <div class="col-md-5">
                                 @livewire('clase', ['maestro' => $maestro], key($maestro->id))

@@ -18,6 +18,7 @@ class CreateClasesTable extends Migration
             $table->foreignId('maestro_id')->constrained();
             $table->foreignId('materia_id')->constrained();
             $table->foreignId('grupo_id')->constrained();
+            $table->unique(['materia_id', 'grupo_id']);
             $table->timestamps();
         });
     }

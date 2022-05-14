@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Clase;
 use App\Models\Maestro;
+use Exception;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Throwable;
 
 /**
  * Class ClaseController
@@ -46,7 +49,12 @@ class ClaseController extends Controller
     {
         request()->validate(Clase::$rules);
 
-        $clase = Clase::create($request->all());
+        try {
+            $clase = Clase::create($request->all());
+        } catch (QueryException $th) {
+            return redirect()->route('maestros.show', ['maestro' => $request->maestro_id])
+                ->with('success', 'Esa clase ya esta registrada.');
+        }
 
         return redirect()->route('maestros.show', ['maestro' => $clase->maestro])
             ->with('success', 'Clase created successfully.');
