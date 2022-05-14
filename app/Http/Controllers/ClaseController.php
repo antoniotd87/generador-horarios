@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Clase;
+use App\Models\Maestro;
 use Illuminate\Http\Request;
 
 /**
@@ -29,10 +30,10 @@ class ClaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Maestro $maestro)
     {
         $clase = new Clase();
-        return view('clase.create', compact('clase'));
+        return view('clase.create', compact('clase', 'maestro'));
     }
 
     /**
@@ -47,7 +48,7 @@ class ClaseController extends Controller
 
         $clase = Clase::create($request->all());
 
-        return redirect()->route('clases.index')
+        return redirect()->route('maestros.show', ['maestro' => $clase->maestro])
             ->with('success', 'Clase created successfully.');
     }
 
@@ -70,11 +71,11 @@ class ClaseController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Maestro $maestro)
     {
         $clase = Clase::find($id);
 
-        return view('clase.edit', compact('clase'));
+        return view('clase.edit', compact('clase', 'maestro'));
     }
 
     /**
@@ -90,7 +91,7 @@ class ClaseController extends Controller
 
         $clase->update($request->all());
 
-        return redirect()->route('clases.index')
+        return redirect()->route('maestros.show', ['maestro' => $clase->maestro])
             ->with('success', 'Clase updated successfully');
     }
 

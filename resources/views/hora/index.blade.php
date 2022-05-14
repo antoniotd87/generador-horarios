@@ -35,7 +35,7 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
 										<th>Hora</th>
 
                                         <th></th>
@@ -45,12 +45,12 @@
                                     @foreach ($horas as $hora)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 											<td>{{ $hora->hora }}</td>
 
                                             <td>
                                                 <form action="{{ route('horas.destroy',$hora->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('horas.show',$hora->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    {{-- <a class="btn btn-sm btn-primary " href="{{ route('horas.show',$hora->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a> --}}
                                                     <a class="btn btn-sm btn-success" href="{{ route('horas.edit',$hora->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')

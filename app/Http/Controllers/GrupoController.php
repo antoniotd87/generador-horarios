@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Grupo;
+use App\Models\Semestre;
 use Illuminate\Http\Request;
 
 /**
@@ -32,7 +33,8 @@ class GrupoController extends Controller
     public function create()
     {
         $grupo = new Grupo();
-        return view('grupo.create', compact('grupo'));
+        $semestres = Semestre::all();
+        return view('grupo.create', compact('grupo', 'semestres'));
     }
 
     /**
@@ -48,7 +50,7 @@ class GrupoController extends Controller
         $grupo = Grupo::create($request->all());
 
         return redirect()->route('grupos.index')
-            ->with('success', 'Grupo created successfully.');
+            ->with('success', 'Grupo creado correctamente.');
     }
 
     /**
@@ -73,8 +75,8 @@ class GrupoController extends Controller
     public function edit($id)
     {
         $grupo = Grupo::find($id);
-
-        return view('grupo.edit', compact('grupo'));
+        $semestres = Semestre::all();
+        return view('grupo.edit', compact('grupo', 'semestres'));
     }
 
     /**
@@ -91,7 +93,7 @@ class GrupoController extends Controller
         $grupo->update($request->all());
 
         return redirect()->route('grupos.index')
-            ->with('success', 'Grupo updated successfully');
+            ->with('success', 'Grupo actualizado correctamente');
     }
 
     /**
@@ -104,6 +106,6 @@ class GrupoController extends Controller
         $grupo = Grupo::find($id)->delete();
 
         return redirect()->route('grupos.index')
-            ->with('success', 'Grupo deleted successfully');
+            ->with('success', 'Grupo eliminado correctamente');
     }
 }

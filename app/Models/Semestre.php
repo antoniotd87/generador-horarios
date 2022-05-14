@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $created_at
  * @property $updated_at
  *
+ * @property Grupo[] $grupos
  * @property Materia[] $materias
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
@@ -33,6 +34,14 @@ class Semestre extends Model
     protected $fillable = ['semestre'];
 
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function grupos()
+    {
+        return $this->hasMany('App\Models\Grupo', 'semestre_id', 'id');
+    }
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

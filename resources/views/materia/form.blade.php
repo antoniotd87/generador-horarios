@@ -1,6 +1,6 @@
 <div class="box box-info padding-1">
     <div class="box-body">
-        
+
         <div class="form-group">
             {{ Form::label('clave') }}
             {{ Form::text('clave', $materia->clave, ['class' => 'form-control' . ($errors->has('clave') ? ' is-invalid' : ''), 'placeholder' => 'Clave']) }}
@@ -27,8 +27,14 @@
             {!! $errors->first('horas', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('semestre_id') }}
-            {{ Form::text('semestre_id', $materia->semestre_id, ['class' => 'form-control' . ($errors->has('semestre_id') ? ' is-invalid' : ''), 'placeholder' => 'Semestre Id']) }}
+            {{ Form::label('semestre') }}
+            <select name="semestre" class="form-control">
+                <option value="">Seleccione...</option>
+                @foreach ($semestres as $item)
+                    <option value="{{ $item->id }}" {{ $item->id == $materia->semestre_id ? 'selected' : '' }}>
+                        {{ $item->semestre }}</option>
+                @endforeach
+            </select>
             {!! $errors->first('semestre_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">

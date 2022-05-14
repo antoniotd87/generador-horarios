@@ -19,12 +19,28 @@
                     </div>
 
                     <div class="card-body">
-                        
+
                         <div class="form-group">
                             <strong>Grupo:</strong>
                             {{ $grupo->grupo }}
                         </div>
-
+                        <div class="form-group">
+                            <strong>Semestre:</strong>
+                            {{ $grupo->semestre->semestre }}
+                        </div>
+                        <p>Lista de materias del grupo</p>
+                        <ul class="list-group">
+                            @foreach ($grupo->materiaGrupos as $materiaAsignada)
+                                @php
+                                    $docente = $grupo
+                                        ->clases()
+                                        ->where('materia_id', $materiaAsignada->materia_id)
+                                        ->first();
+                                @endphp
+                                <li class="list-group-item">{{ $materiaAsignada->materia->materia }} <strong>Impartido
+                                    por:</strong> {{ $docente ? $docente->maestro->docente:'No especificado aun.' }}</li>
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
             </div>

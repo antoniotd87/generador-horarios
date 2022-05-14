@@ -28,5 +28,7 @@ Route::resource('dias', 'DiaController');
 Route::resource('horario-disponibles', 'HorarioDisponibleController');
 Route::resource('grupos', 'GrupoController');
 Route::resource('materia-grupos', 'MateriaGrupoController');
-Route::resource('clases', 'ClaseController');
+Route::resource('clases', 'ClaseController')->except(['create', 'edit']);
+Route::get('clases/create/{maestro}', 'ClaseController@create')->name('clases.create');
+Route::get('clases/{clase}/create/{maestro}', 'ClaseController@edit')->name('clases.edit');
 Route::resource('horarios', 'HorarioController');

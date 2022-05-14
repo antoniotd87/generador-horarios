@@ -35,7 +35,7 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
 										<th>Dia</th>
 
                                         <th></th>
@@ -45,12 +45,12 @@
                                     @foreach ($dias as $dia)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 											<td>{{ $dia->dia }}</td>
 
                                             <td>
                                                 <form action="{{ route('dias.destroy',$dia->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('dias.show',$dia->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    {{-- <a class="btn btn-sm btn-primary " href="{{ route('dias.show',$dia->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a> --}}
                                                     <a class="btn btn-sm btn-success" href="{{ route('dias.edit',$dia->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')

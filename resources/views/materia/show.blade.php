@@ -41,15 +41,19 @@
                             {{ $materia->horas }}
                         </div>
                         <div class="form-group">
-                            <strong>Semestre Id:</strong>
-                            {{ $materia->semestre_id }}
-                        </div>
-                        <div class="form-group">
                             <strong>Especialidad:</strong>
                             {{ $materia->especialidad }}
                         </div>
-
-                        grupos de la materia
+                        <div class="form-group">
+                            <strong>Semestre:</strong>
+                            {{ $materia->semestre->semestre }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Grupos:</strong>
+                            @foreach ($materia->materiaGrupos as $item)
+                                {{ $item->grupo->grupo }}
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Materia;
+use App\Models\Semestre;
 use Illuminate\Http\Request;
 
 /**
@@ -32,7 +33,8 @@ class MateriaController extends Controller
     public function create()
     {
         $materia = new Materia();
-        return view('materia.create', compact('materia'));
+        $semestres = Semestre::all();
+        return view('materia.create', compact('materia','semestres'));
     }
 
     /**
@@ -46,6 +48,9 @@ class MateriaController extends Controller
         request()->validate(Materia::$rules);
 
         $materia = Materia::create($request->all());
+        foreach ($materia->semestre->grupos as $item) {
+            $materia->materiaGrupos()->create(['grupo_id' => $item->id]);
+        }
 
         return redirect()->route('materias.index')
             ->with('success', 'Materia created successfully.');
@@ -73,8 +78,8 @@ class MateriaController extends Controller
     public function edit($id)
     {
         $materia = Materia::find($id);
-
-        return view('materia.edit', compact('materia'));
+        $semestres = Semestre::all();
+        return view('materia.edit', compact('materia','semestres'));
     }
 
     /**
@@ -89,6 +94,10 @@ class MateriaController extends Controller
         request()->validate(Materia::$rules);
 
         $materia->update($request->all());
+        $materia->materiaGrupos()->delete();
+        foreach ($materia->semestre->grupos as $item) {
+            $materia->materiaGrupos()->create(['grupo_id' => $item->id]);
+        }
 
         return redirect()->route('materias.index')
             ->with('success', 'Materia updated successfully');

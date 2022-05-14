@@ -16,11 +16,12 @@
                                 {{ __('Grupo') }}
                             </span>
 
-                             <div class="float-right">
-                                <a href="{{ route('grupos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                            <div class="float-right">
+                                <a href="{{ route('grupos.create') }}" class="btn btn-primary btn-sm float-right"
+                                    data-placement="left">
+                                    {{ __('Create New') }}
                                 </a>
-                              </div>
+                            </div>
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -35,8 +36,9 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
-										<th>Grupo</th>
+
+                                        <th>Grupo</th>
+                                        <th>Semestre</th>
 
                                         <th></th>
                                     </tr>
@@ -45,16 +47,20 @@
                                     @foreach ($grupos as $grupo)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
-											<td>{{ $grupo->grupo }}</td>
+
+                                            <td>{{ $grupo->grupo }}</td>
+                                            <td>{{ $grupo->semestre->semestre }}</td>
 
                                             <td>
-                                                <form action="{{ route('grupos.destroy',$grupo->id) }}" method="POST">
+                                                <form action="{{ route('grupos.destroy', $grupo->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('grupos.show',$grupo->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('grupos.edit',$grupo->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                    <a class="btn btn-sm btn-success"
+                                                        href="{{ route('grupos.edit', $grupo->id) }}"><i
+                                                            class="fa fa-fw fa-edit"></i> Editar</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i
+                                                            class="fa fa-fw fa-trash"></i> Eliminar</button>
                                                 </form>
                                             </td>
                                         </tr>

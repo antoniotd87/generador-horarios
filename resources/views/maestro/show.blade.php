@@ -36,11 +36,13 @@
                             <strong>Division:</strong>
                             {{ $maestro->division }}
                         </div>
-                        <div class="form-group">
-                            @livewire('horario-disponible', ['maestro' => $maestro], key($maestro->id))
-                        </div>
-                        <div class="form-group">
-                            Agregar clases
+                        <div class="row">
+                            <div class="col-md-5">
+                                @livewire('clase', ['maestro' => $maestro], key($maestro->id))
+                            </div>
+                            <div class="col-md-7">
+                                @livewire('horario-disponible', ['maestro' => $maestro], key($maestro->id))
+                            </div>
                         </div>
                     </div>
                 </div>

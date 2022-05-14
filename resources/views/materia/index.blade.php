@@ -16,11 +16,12 @@
                                 {{ __('Materia') }}
                             </span>
 
-                             <div class="float-right">
-                                <a href="{{ route('materias.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                            <div class="float-right">
+                                <a href="{{ route('materias.create') }}" class="btn btn-primary btn-sm float-right"
+                                    data-placement="left">
+                                    {{ __('Create New') }}
                                 </a>
-                              </div>
+                            </div>
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -35,14 +36,14 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
-										<th>Clave</th>
-										<th>Materia</th>
-										<th>Creditos</th>
-										<th>Carrera</th>
-										<th>Horas</th>
-										<th>Semestre Id</th>
-										<th>Especialidad</th>
+
+                                        <th>Clave</th>
+                                        <th>Materia</th>
+                                        <th>Creditos</th>
+                                        <th>Carrera</th>
+                                        <th>Horas</th>
+                                        <th>Semestre</th>
+                                        <th>Especialidad</th>
 
                                         <th></th>
                                     </tr>
@@ -51,22 +52,28 @@
                                     @foreach ($materias as $materia)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
-											<td>{{ $materia->clave }}</td>
-											<td>{{ $materia->materia }}</td>
-											<td>{{ $materia->creditos }}</td>
-											<td>{{ $materia->carrera }}</td>
-											<td>{{ $materia->horas }}</td>
-											<td>{{ $materia->semestre_id }}</td>
-											<td>{{ $materia->especialidad }}</td>
+
+                                            <td>{{ $materia->clave }}</td>
+                                            <td>{{ $materia->materia }}</td>
+                                            <td>{{ $materia->creditos }}</td>
+                                            <td>{{ $materia->carrera }}</td>
+                                            <td>{{ $materia->horas }}</td>
+                                            <td>{{ $materia->semestre->semestre }}</td>
+                                            <td>{{ $materia->especialidad }}</td>
 
                                             <td>
-                                                <form action="{{ route('materias.destroy',$materia->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('materias.show',$materia->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('materias.edit',$materia->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                <form action="{{ route('materias.destroy', $materia->id) }}"
+                                                    method="POST">
+                                                    <a class="btn btn-sm btn-primary "
+                                                        href="{{ route('materias.show', $materia->id) }}"><i
+                                                            class="fa fa-fw fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-success"
+                                                        href="{{ route('materias.edit', $materia->id) }}"><i
+                                                            class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i
+                                                            class="fa fa-fw fa-trash"></i> Delete</button>
                                                 </form>
                                             </td>
                                         </tr>
