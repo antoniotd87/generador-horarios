@@ -1,7 +1,42 @@
 @extends('layouts.app')
 
 @section('content')
-    <h6>Dashboard</h6>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, nesciunt! Quo, iste, corrupti culpa totam facere
-        suscipit sunt harum autem labore tenetur explicabo id veniam ea beatae. Officiis, accusamus laudantium!</p>
+    <div class="d-flex justify-content-between align-items-center">
+        <div>
+            <h5>Inicio</h5>
+        </div>
+        <div><a href="{{ route('horario.generador') }}" class="btn btn-sm btn-primary">Generar Horarios</a>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <h6>Horario Por Grupo</h6>
+            <ul class="list-group ">
+                @foreach ($grupos as $grupo)
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>Grupo: {{ $grupo->grupo }}</div>
+                            <div><a href="{{ route('horario.grupo', ['grupo' => $grupo->id]) }}"
+                                    class="btn btn-sm btn-primary">Ver Horario</a></div>
+                        </div>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h6>Horario Por Maestro</h6>
+            <ul class="list-group ">
+                @foreach ($maestros as $maestro)
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>{{ $maestro->docente }}</div>
+                            <div><a href="{{ route('horario.maestro', ['maestro' => $maestro->id]) }}"
+                                    class="btn btn-sm btn-primary">Ver Horario</a></div>
+                        </div>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
 @endsection

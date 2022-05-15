@@ -18,17 +18,24 @@
     <!-- END GLOBAL MANDATORY STYLES -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/forms/theme-checkbox-radio.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/forms/switches.css') }}">
+    <style>
+        body{
+            margin: auto;
+        }
+    </style>
 </head>
 
 
-<body class="form">
+<body>
 
     <div class="form-container">
         <div class="form-form w-100">
             <div class="form-form-wrap">
                 <div class="form-container">
                     <div class="form-content">
-                        @yield('content')
+                        <div class="card p-5 shadow rounded">
+                            @yield('content')
+                        </div>
                     </div>
                 </div>
             </div>

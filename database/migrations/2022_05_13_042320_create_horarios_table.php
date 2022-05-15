@@ -20,6 +20,7 @@ class CreateHorariosTable extends Migration
             $table->foreignId('grupo_id')->constrained();
             $table->foreignId('hora_id')->constrained();
             $table->foreignId('dia_id')->constrained();
+            $table->unique(['grupo_id', 'hora_id', 'dia_id']);
             $table->timestamps();
         });
     }
