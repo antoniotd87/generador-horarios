@@ -29,7 +29,7 @@
                                     $claseAsignada = false;
                                     $clase = '';
                                 @endphp
-                                @foreach ($grupo->horarios as $horario)
+                                @foreach ($grupo->clases as $horario)
                                     @if ($horario->dia_id == $dia->id && $horario->hora_id == $hora->id)
                                         @php
                                             $claseAsignada = true;
