@@ -24,6 +24,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::resource('maestros', 'MaestroController');
     Route::resource('semestres', 'SemestreController');
+    Route::resource('aulas', 'AulaController');
     Route::resource('materias', 'MateriaController');
     Route::resource('horas', 'HoraController');
     Route::resource('dias', 'DiaController');

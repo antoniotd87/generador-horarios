@@ -1,6 +1,5 @@
 <div class="box box-info padding-1">
     <div class="box-body">
-
         <div class="form-group">
             {{ Form::label('clave') }}
             {{ Form::text('clave', $materia->clave, ['class' => 'form-control' . ($errors->has('clave') ? ' is-invalid' : ''), 'placeholder' => 'Clave']) }}
@@ -28,7 +27,7 @@
         </div>
         <div class="form-group">
             {{ Form::label('semestre') }}
-            <select name="semestre" class="form-control">
+            <select name="semestre_id" class="form-control">
                 <option value="">Seleccione...</option>
                 @foreach ($semestres as $item)
                     <option value="{{ $item->id }}" {{ $item->id == $materia->semestre_id ? 'selected' : '' }}>

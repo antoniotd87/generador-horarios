@@ -10,12 +10,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property $id
  * @property $grupo
  * @property $jefe_de_grupo
+ * @property $total
  * @property $semestre_id
  * @property $created_at
  * @property $updated_at
  *
  * @property Clase[] $clases
- * @property Horario[] $horarios
+ * @property Horario $horario
  * @property MateriaGrupo[] $materiaGrupos
  * @property Semestre $semestre
  * @package App
@@ -23,21 +24,22 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Grupo extends Model
 {
-    
+
     static $rules = [
-		'grupo' => 'required',
-		'jefe_de_grupo' => 'required',
-		'semestre_id' => 'required',
+        'grupo' => 'required',
+        'jefe_de_grupo' => 'required',
+        'total' => 'required',
+        'semestre_id' => 'required',
     ];
 
-    protected $perPage = 20;
+    protected $perPage = 10;
 
     /**
      * Attributes that should be mass-assignable.
      *
      * @var array
      */
-    protected $fillable = ['grupo','jefe_de_grupo','semestre_id'];
+    protected $fillable = ['grupo', 'jefe_de_grupo', 'total', 'semestre_id'];
 
 
     /**
@@ -47,15 +49,15 @@ class Grupo extends Model
     {
         return $this->hasMany('App\Models\Clase', 'grupo_id', 'id');
     }
-    
+
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function horarios()
+    public function horario()
     {
-        return $this->hasMany('App\Models\Horario', 'grupo_id', 'id');
+        return $this->hasOne('App\Models\Horario', 'grupo_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -63,7 +65,7 @@ class Grupo extends Model
     {
         return $this->hasMany('App\Models\MateriaGrupo', 'grupo_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -71,6 +73,4 @@ class Grupo extends Model
     {
         return $this->hasOne('App\Models\Semestre', 'id', 'semestre_id');
     }
-    
-
 }

@@ -19,12 +19,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Hora extends Model
 {
-    
+
     static $rules = [
 		'hora' => 'required',
     ];
 
-    protected $perPage = 20;
+    protected $perPage = 10;
 
     /**
      * Attributes that should be mass-assignable.
@@ -41,7 +41,7 @@ class Hora extends Model
     {
         return $this->hasMany('App\Models\Horario', 'hora_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -49,6 +49,6 @@ class Hora extends Model
     {
         return $this->hasMany('App\Models\HorarioDisponible', 'hora_id', 'id');
     }
-    
+
 
 }

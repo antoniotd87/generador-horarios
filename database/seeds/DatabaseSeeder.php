@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Aula;
 use App\Models\Dia;
 use App\Models\Hora;
 use App\Models\Maestro;
@@ -24,16 +25,34 @@ class DatabaseSeeder extends Seeder
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => 'fheruifbus',
         ]);
-        $primerSemestre = Semestre::create([
-            'semestre' => 'Primero'
-        ]);
-        $segundoSemestre = Semestre::create([
-            'semestre' => 'Segundo'
-        ]);
-        $primerSemestre->grupos()->create(['grupo' => '101','jefe_de_grupo'=>'Jefe 1','total'=>40]);
-        $primerSemestre->grupos()->create(['grupo' => '102','jefe_de_grupo'=>'Jefe 2','total'=>40]);
-        $segundoSemestre->grupos()->create(['grupo' => '201','jefe_de_grupo'=>'Jefe 3','total'=>40]);
-        $segundoSemestre->grupos()->create(['grupo' => '202','jefe_de_grupo'=>'Jefe 4','total'=>40]);
+
+        $semestre = Semestre::create(['semestre' => 'Primero']);
+        $semestre->grupos()->create(['grupo' => '101','jefe_de_grupo'=>'Jefe 1','total'=>40]);
+        $semestre->grupos()->create(['grupo' => '102','jefe_de_grupo'=>'Jefe 2','total'=>40]);
+        $semestre = Semestre::create(['semestre' => 'Segundo']);
+        $semestre->grupos()->create(['grupo' => '201','jefe_de_grupo'=>'Jefe 1','total'=>40]);
+        $semestre->grupos()->create(['grupo' => '202','jefe_de_grupo'=>'Jefe 2','total'=>40]);
+        $semestre = Semestre::create(['semestre' => 'Tercero']);
+        $semestre->grupos()->create(['grupo' => '301','jefe_de_grupo'=>'Jefe 1','total'=>40]);
+        $semestre->grupos()->create(['grupo' => '302','jefe_de_grupo'=>'Jefe 2','total'=>40]);
+        $semestre = Semestre::create(['semestre' => 'Cuarto']);
+        $semestre->grupos()->create(['grupo' => '401','jefe_de_grupo'=>'Jefe 1','total'=>40]);
+        $semestre->grupos()->create(['grupo' => '402','jefe_de_grupo'=>'Jefe 2','total'=>40]);
+        $semestre = Semestre::create(['semestre' => 'Quinto']);
+        $semestre->grupos()->create(['grupo' => '501','jefe_de_grupo'=>'Jefe 1','total'=>40]);
+        $semestre->grupos()->create(['grupo' => '502','jefe_de_grupo'=>'Jefe 2','total'=>40]);
+        $semestre = Semestre::create(['semestre' => 'Sexto']);
+        $semestre->grupos()->create(['grupo' => '601','jefe_de_grupo'=>'Jefe 1','total'=>40]);
+        $semestre->grupos()->create(['grupo' => '602','jefe_de_grupo'=>'Jefe 2','total'=>40]);
+        $semestre = Semestre::create(['semestre' => 'Septimo']);
+        $semestre->grupos()->create(['grupo' => '701','jefe_de_grupo'=>'Jefe 1','total'=>40]);
+        $semestre->grupos()->create(['grupo' => '702','jefe_de_grupo'=>'Jefe 2','total'=>40]);
+        $semestre = Semestre::create(['semestre' => 'Octavo']);
+        $semestre->grupos()->create(['grupo' => '801','jefe_de_grupo'=>'Jefe 1','total'=>40]);
+        $semestre->grupos()->create(['grupo' => '802','jefe_de_grupo'=>'Jefe 2','total'=>40]);
+        $semestre = Semestre::create(['semestre' => 'Noveno']);
+        $semestre->grupos()->create(['grupo' => '901','jefe_de_grupo'=>'Jefe 1','total'=>40]);
+        $semestre->grupos()->create(['grupo' => '902','jefe_de_grupo'=>'Jefe 2','total'=>40]);
 
         Hora::create(['hora' => '7:00 AM']);
         Hora::create(['hora' => '8:00 AM']);
@@ -53,6 +72,14 @@ class DatabaseSeeder extends Seeder
         Dia::create(['dia' => 'Miercoles']);
         Dia::create(['dia' => 'Jueves']);
         Dia::create(['dia' => 'Viernes']);
+
+        Aula::create(['aula' => 'Aula 1']);
+        Aula::create(['aula' => 'Aula 2']);
+        Aula::create(['aula' => 'Aula 3']);
+        Aula::create(['aula' => 'Aula 4']);
+        Aula::create(['aula' => 'Aula 5']);
+        Aula::create(['aula' => 'Aula 6']);
+        Aula::create(['aula' => 'Aula 7']);
 
         $materia = Materia::create([
             'clave' => 'UL-003',
