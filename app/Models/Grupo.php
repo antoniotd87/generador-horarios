@@ -55,7 +55,7 @@ class Grupo extends Model
      */
     public function horario()
     {
-        return $this->hasOne('App\Models\Horario', 'grupo_id', 'id');
+        return $this->hasMany('App\Models\Horario', 'grupo_id', 'id');
     }
 
     /**

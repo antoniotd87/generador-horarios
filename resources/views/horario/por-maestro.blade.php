@@ -10,7 +10,7 @@
     </div>
     <br>
     <div class="row justify-content-center">
-        <div class="col-md-9">
+        <div class="col-md-12">
             <table class="table">
                 <thead>
                     <tr>
@@ -40,11 +40,13 @@
                                 @if ($claseAsignada)
                                     <th scope="col" class="text-center">
                                         <div>
-                                            <h6 class="m-0"><strong>{{ $clase->materia->materia }}</strong></h6>
+                                            <p class="m-0">{{ $clase->materia->materia }}</p>
+                                            <span>Grupo: {{$clase->grupo->grupo}}</span>
+                                            <span>{{$clase->aula->aula}}</span>
                                         </div>
                                     </th>
                                 @else
-                                    <th scope="col" class="text-center"></th>
+                                    <th scope="col" class="text-center "></th>
                                 @endif
                             @endforeach
 

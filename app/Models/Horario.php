@@ -13,9 +13,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property $grupo_id
  * @property $hora_id
  * @property $dia_id
+ * @property $aula_id
  * @property $created_at
  * @property $updated_at
  *
+ * @property Aula $aula
  * @property Dia $dia
  * @property Grupo $grupo
  * @property Hora $hora
@@ -26,25 +28,34 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Horario extends Model
 {
-
+    
     static $rules = [
 		'maestro_id' => 'required',
 		'materia_id' => 'required',
 		'grupo_id' => 'required',
 		'hora_id' => 'required',
 		'dia_id' => 'required',
+		'aula_id' => 'required',
     ];
 
-    protected $perPage = 10;
+    protected $perPage = 20;
 
     /**
      * Attributes that should be mass-assignable.
      *
      * @var array
      */
-    protected $fillable = ['maestro_id','materia_id','grupo_id','hora_id','dia_id'];
+    protected $fillable = ['maestro_id','materia_id','grupo_id','hora_id','dia_id','aula_id'];
 
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function aula()
+    {
+        return $this->hasOne('App\Models\Aula', 'id', 'aula_id');
+    }
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -52,7 +63,7 @@ class Horario extends Model
     {
         return $this->hasOne('App\Models\Dia', 'id', 'dia_id');
     }
-
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -60,7 +71,7 @@ class Horario extends Model
     {
         return $this->hasOne('App\Models\Grupo', 'id', 'grupo_id');
     }
-
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -68,7 +79,7 @@ class Horario extends Model
     {
         return $this->hasOne('App\Models\Hora', 'id', 'hora_id');
     }
-
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -76,7 +87,7 @@ class Horario extends Model
     {
         return $this->hasOne('App\Models\Maestro', 'id', 'maestro_id');
     }
-
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -84,6 +95,6 @@ class Horario extends Model
     {
         return $this->hasOne('App\Models\Materia', 'id', 'materia_id');
     }
-
+    
 
 }
