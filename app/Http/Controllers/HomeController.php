@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aula;
 use App\Models\Dia;
 use App\Models\Grupo;
 use App\Models\Hora;
@@ -64,7 +65,7 @@ class HomeController extends Controller
             ->get();
 
         $dias = Dia::all();
-        $aulas = Dia::all();
+        $aulas = Aula::all();
         $horas = Hora::all();
         foreach ($maestros_id as $maestro_id) {
             $maestro = Maestro::find($maestro_id->id);
@@ -73,8 +74,6 @@ class HomeController extends Controller
             foreach ($horasDelMaestro as $horaDisponible) {
                 foreach ($dias as $dia) {
                     foreach ($horas as $hora) {
-                        print_r('Dia: ' . $dia->dia . ' , Hora: ' . $hora->hora);
-                        echo '<br>';
                         foreach ($aulas as $aula) {
                             if ($dia->id == $horaDisponible->dia_id && $hora->id == $horaDisponible->hora_id) {
                                 foreach ($clasesDelMaestro as $clase) {
@@ -83,7 +82,6 @@ class HomeController extends Controller
                                     $horasDeLaMateria = $clase->materia->horas;
                                     if ($horasAsignadasDeLaMateria < $horasDeLaMateria) {
                                         if ($horasAsignadasDeLaMateriaPorDia < 3) {
-                                            print_r($horasAsignadasDeLaMateriaPorDia);
                                             try {
                                                 $maestro->horarios()->create([
                                                     'materia_id' => $clase->materia_id,
@@ -101,6 +99,7 @@ class HomeController extends Controller
                             }
                         }
                     }
+                    //return;
                 }
             }
         }
