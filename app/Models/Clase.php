@@ -22,14 +22,14 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Clase extends Model
 {
-    
+
     static $rules = [
 		'maestro_id' => 'required',
 		'materia_id' => 'required',
 		'grupo_id' => 'required',
     ];
 
-    protected $perPage = 20;
+    protected $perPage = 10;
 
     /**
      * Attributes that should be mass-assignable.
@@ -46,7 +46,7 @@ class Clase extends Model
     {
         return $this->hasOne('App\Models\Grupo', 'id', 'grupo_id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -54,7 +54,7 @@ class Clase extends Model
     {
         return $this->hasOne('App\Models\Maestro', 'id', 'maestro_id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -62,6 +62,6 @@ class Clase extends Model
     {
         return $this->hasOne('App\Models\Materia', 'id', 'materia_id');
     }
-    
+
 
 }

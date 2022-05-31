@@ -10,7 +10,7 @@
     </div>
     <br>
     <div class="row justify-content-center">
-        <div class="col-md-9">
+        <div class="col-md-12">
             <table class="table">
                 <thead>
                     <tr>
@@ -29,7 +29,8 @@
                                     $claseAsignada = false;
                                     $clase = '';
                                 @endphp
-                                @foreach ($grupo->clases as $horario)
+
+                                @foreach ($grupo->horario as $horario)
                                     @if ($horario->dia_id == $dia->id && $horario->hora_id == $hora->id)
                                         @php
                                             $claseAsignada = true;
@@ -41,7 +42,8 @@
                                     <th scope="col" class="text-center">
                                         <div>
                                             <h6 class="m-0"><strong>{{ $clase->materia->materia }}</strong></h6>
-                                            <p class="m-0">{{ $clase->maestro->docente }}</p>
+                                            <span class="m-0">{{ $clase->maestro->docente }}</span>
+                                            <span class="m-0">{{ $clase->aula->aula }}</span>
                                         </div>
                                     </th>
                                 @else

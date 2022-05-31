@@ -13,9 +13,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property $grupo_id
  * @property $hora_id
  * @property $dia_id
+ * @property $aula_id
  * @property $created_at
  * @property $updated_at
  *
+ * @property Aula $aula
  * @property Dia $dia
  * @property Grupo $grupo
  * @property Hora $hora
@@ -33,6 +35,7 @@ class Horario extends Model
 		'grupo_id' => 'required',
 		'hora_id' => 'required',
 		'dia_id' => 'required',
+		'aula_id' => 'required',
     ];
 
     protected $perPage = 20;
@@ -42,9 +45,17 @@ class Horario extends Model
      *
      * @var array
      */
-    protected $fillable = ['maestro_id','materia_id','grupo_id','hora_id','dia_id'];
+    protected $fillable = ['maestro_id','materia_id','grupo_id','hora_id','dia_id','aula_id'];
 
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function aula()
+    {
+        return $this->hasOne('App\Models\Aula', 'id', 'aula_id');
+    }
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */

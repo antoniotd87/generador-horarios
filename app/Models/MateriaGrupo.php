@@ -28,7 +28,7 @@ class MateriaGrupo extends Model
 
     public $table = 'materia_grupo';
 
-    protected $perPage = 20;
+    protected $perPage = 10;
 
     /**
      * Attributes that should be mass-assignable.

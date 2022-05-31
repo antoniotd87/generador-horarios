@@ -19,12 +19,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Semestre extends Model
 {
-    
+
     static $rules = [
 		'semestre' => 'required',
     ];
 
-    protected $perPage = 20;
+    protected $perPage = 10;
 
     /**
      * Attributes that should be mass-assignable.
@@ -41,7 +41,7 @@ class Semestre extends Model
     {
         return $this->hasMany('App\Models\Grupo', 'semestre_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -49,6 +49,6 @@ class Semestre extends Model
     {
         return $this->hasMany('App\Models\Materia', 'semestre_id', 'id');
     }
-    
+
 
 }

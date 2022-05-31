@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aula;
 use App\Models\Dia;
 use App\Models\Grupo;
 use App\Models\Hora;
+use App\Models\Horario;
 use App\Models\Maestro;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -54,6 +56,7 @@ class HomeController extends Controller
 
     public function generador()
     {
+        Horario::truncate();
         $maestros_id = DB::table('maestros')
             ->join('horario_disponible', 'maestros.id', '=', 'horario_disponible.maestro_id')
             ->select(['maestros.id', DB::raw('count(*) as totalHoras, maestros.id')])
@@ -62,25 +65,41 @@ class HomeController extends Controller
             ->get();
 
         $dias = Dia::all();
+        $aulas = Aula::all();
         $horas = Hora::all();
         foreach ($maestros_id as $maestro_id) {
             $maestro = Maestro::find($maestro_id->id);
             $horasDelMaestro = $maestro->horarioDisponibles;
             $clasesDelMaestro = $maestro->clases;
-            foreach ($dias as $dia) {
-                foreach ($horas as $hora) {
-                    foreach ($horasDelMaestro as $horaDisponible) {
-                        if ($dia->id == $horaDisponible->dia_id && $hora->id == $horaDisponible->hora_id) {
-                            echo 'Hora Disponible ';
-                            echo $dia->dia;
-                            echo $hora->hora;
-                            echo '<br>';
-                            echo '<br>';
-                            foreach ($clasesDelMaestro as $clase) {
-                                $maestro->horarios()->create(['clase_id'=>$clase->id]);
+            foreach ($horasDelMaestro as $horaDisponible) {
+                foreach ($dias as $dia) {
+                    foreach ($horas as $hora) {
+                        foreach ($aulas as $aula) {
+                            if ($dia->id == $horaDisponible->dia_id && $hora->id == $horaDisponible->hora_id) {
+                                foreach ($clasesDelMaestro as $clase) {
+                                    $horasAsignadasDeLaMateria = $maestro->horarios()->where('materia_id', $clase->materia_id)->where('grupo_id', $clase->grupo_id)->count();
+                                    $horasAsignadasDeLaMateriaPorDia = $maestro->horarios()->where('dia_id', $dia->id)->where('materia_id', $clase->materia_id)->count();
+                                    $horasDeLaMateria = $clase->materia->horas;
+                                    if ($horasAsignadasDeLaMateria < $horasDeLaMateria) {
+                                        if ($horasAsignadasDeLaMateriaPorDia < 3) {
+                                            try {
+                                                $maestro->horarios()->create([
+                                                    'materia_id' => $clase->materia_id,
+                                                    'grupo_id' => $clase->grupo_id,
+                                                    'hora_id' => $hora->id,
+                                                    'dia_id' => $dia->id,
+                                                    'aula_id' => $aula->id,
+                                                ]);
+                                            } catch (\Throwable $th) {
+                                                //print_r($th->getMessage());
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
+                    //return;
                 }
             }
         }

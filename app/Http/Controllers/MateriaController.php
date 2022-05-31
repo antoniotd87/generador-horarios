@@ -34,7 +34,7 @@ class MateriaController extends Controller
     {
         $materia = new Materia();
         $semestres = Semestre::all();
-        return view('materia.create', compact('materia','semestres'));
+        return view('materia.create', compact('materia', 'semestres'));
     }
 
     /**
@@ -79,7 +79,7 @@ class MateriaController extends Controller
     {
         $materia = Materia::find($id);
         $semestres = Semestre::all();
-        return view('materia.edit', compact('materia','semestres'));
+        return view('materia.edit', compact('materia', 'semestres'));
     }
 
     /**
@@ -110,9 +110,14 @@ class MateriaController extends Controller
      */
     public function destroy($id)
     {
-        $materia = Materia::find($id)->delete();
-
-        return redirect()->route('materias.index')
-            ->with('success', 'Materia deleted successfully');
+        try {
+            //code...
+            $materia = Materia::find($id)->delete();
+            return redirect()->route('materias.index')
+                ->with('success', 'Materia deleted successfully');
+        } catch (\Throwable $th) {
+            return redirect()->route('materias.index')
+                ->with('success', 'No puedes eliminar esta materia por que esta liga a clases o a docentes');
+        }
     }
 }

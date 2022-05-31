@@ -27,7 +27,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Materia extends Model
 {
-    
+
     static $rules = [
 		'clave' => 'required',
 		'materia' => 'required',
@@ -37,7 +37,7 @@ class Materia extends Model
 		'semestre_id' => 'required',
     ];
 
-    protected $perPage = 20;
+    protected $perPage = 10;
 
     /**
      * Attributes that should be mass-assignable.
@@ -54,7 +54,7 @@ class Materia extends Model
     {
         return $this->hasMany('App\Models\Clase', 'materia_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -62,7 +62,7 @@ class Materia extends Model
     {
         return $this->hasMany('App\Models\Horario', 'materia_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -70,7 +70,7 @@ class Materia extends Model
     {
         return $this->hasMany('App\Models\MateriaGrupo', 'materia_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -78,6 +78,6 @@ class Materia extends Model
     {
         return $this->hasOne('App\Models\Semestre', 'id', 'semestre_id');
     }
-    
+
 
 }

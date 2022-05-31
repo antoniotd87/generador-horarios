@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Maestro extends Model
 {
-    
+
     static $rules = [
 		'uid' => 'required',
 		'docente' => 'required',
@@ -31,7 +31,7 @@ class Maestro extends Model
 		'division' => 'required',
     ];
 
-    protected $perPage = 20;
+    protected $perPage = 10;
 
     /**
      * Attributes that should be mass-assignable.
@@ -48,7 +48,7 @@ class Maestro extends Model
     {
         return $this->hasMany('App\Models\Clase', 'maestro_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -56,7 +56,7 @@ class Maestro extends Model
     {
         return $this->hasMany('App\Models\Horario', 'maestro_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -64,6 +64,6 @@ class Maestro extends Model
     {
         return $this->hasMany('App\Models\HorarioDisponible', 'maestro_id', 'id');
     }
-    
+
 
 }

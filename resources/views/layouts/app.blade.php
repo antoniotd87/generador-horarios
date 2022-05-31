@@ -32,6 +32,9 @@
         .layout-px-spacing {
             min-height: calc(100vh - 184px) !important;
         }
+        .invalid-feedback{
+            display: block;
+        }
 
     </style>
 

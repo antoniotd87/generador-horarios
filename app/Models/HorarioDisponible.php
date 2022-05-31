@@ -31,7 +31,7 @@ class HorarioDisponible extends Model
 
     public $table = 'horario_disponible';
 
-    protected $perPage = 20;
+    protected $perPage = 10;
 
     /**
      * Attributes that should be mass-assignable.
