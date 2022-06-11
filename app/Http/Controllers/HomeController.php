@@ -10,6 +10,7 @@ use App\Models\Horario;
 use App\Models\Maestro;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class HomeController extends Controller
 {
@@ -44,7 +45,17 @@ class HomeController extends Controller
     {
         $dias = Dia::all();
         $horas = Hora::all();
+
         return view('horario.por-grupo', compact('grupo', 'dias', 'horas'));
+    }
+
+    public function descargarHorarioGrupo(Grupo $grupo)
+    {
+        $dias = Dia::all();
+        $horas = Hora::all();
+
+        $pdf = PDF::loadView('horario.pdf.por-grupo', ['grupo'=>$grupo,'dias'=>$dias,'horas'=>$horas])->setPaper('a4', 'landscape');
+        return $pdf->download('invoice.pdf');
     }
 
     public function horarioMaestro(Maestro $maestro)

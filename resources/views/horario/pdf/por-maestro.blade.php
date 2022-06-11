@@ -1,12 +1,8 @@
-@extends('layouts.app')
-
-@section('content')
     <div class="d-flex justify-content-between align-items-center">
         <div>
-            <h5>Horario del grupo {{ $grupo->grupo }}</h5>
+            <h5>Horario del docente: {{ $maestro->docente }}</h5>
         </div>
-        <div><a href="{{ route('descargar.horario.grupo', ['grupo' => $grupo->id]) }}"
-                class="btn btn-sm btn-primary">Descargar Horario</a>
+        <div><a href="#" class="btn btn-sm btn-primary">Descargar Horario</a>
         </div>
     </div>
     <br>
@@ -30,8 +26,7 @@
                                     $claseAsignada = false;
                                     $clase = '';
                                 @endphp
-
-                                @foreach ($grupo->horario as $horario)
+                                @foreach ($maestro->horarios as $horario)
                                     @if ($horario->dia_id == $dia->id && $horario->hora_id == $hora->id)
                                         @php
                                             $claseAsignada = true;
@@ -42,13 +37,13 @@
                                 @if ($claseAsignada)
                                     <th scope="col" class="text-center">
                                         <div>
-                                            <h6 class="m-0"><strong>{{ $clase->materia->materia }}</strong></h6>
-                                            <span class="m-0">{{ $clase->maestro->docente }}</span>
-                                            <span class="m-0">{{ $clase->aula->aula }}</span>
+                                            <p class="m-0">{{ $clase->materia->materia }}</p>
+                                            <span>Grupo: {{ $clase->grupo->grupo }}</span>
+                                            <span>{{ $clase->aula->aula }}</span>
                                         </div>
                                     </th>
                                 @else
-                                    <th scope="col" class="text-center"></th>
+                                    <th scope="col" class="text-center "></th>
                                 @endif
                             @endforeach
 
@@ -58,4 +53,3 @@
             </table>
         </div>
     </div>
-@endsection
