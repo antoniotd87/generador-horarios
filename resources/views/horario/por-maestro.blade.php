@@ -5,7 +5,8 @@
         <div>
             <h5>Horario del docente: {{ $maestro->docente }}</h5>
         </div>
-        <div><a href="#" class="btn btn-sm btn-primary">Descargar Horario</a>
+        <div><a href="{{ route('descargar.horario.maestro', ['maestro' => $maestro->id]) }}"
+                class="btn btn-sm btn-primary">Descargar Horario</a>
         </div>
     </div>
     <br>
@@ -41,8 +42,8 @@
                                     <th scope="col" class="text-center">
                                         <div>
                                             <p class="m-0">{{ $clase->materia->materia }}</p>
-                                            <span>Grupo: {{$clase->grupo->grupo}}</span>
-                                            <span>{{$clase->aula->aula}}</span>
+                                            <span>Grupo: {{ $clase->grupo->grupo }}</span>
+                                            <span>{{ $clase->aula->aula }}</span>
                                         </div>
                                     </th>
                                 @else

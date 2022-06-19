@@ -39,4 +39,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/horarioGrupo/{grupo}', 'HomeController@horarioGrupo')->name('horario.grupo');
     Route::get('/descargarHorarioGrupo/{grupo}', 'HomeController@descargarHorarioGrupo')->name('descargar.horario.grupo');
     Route::get('/horarioMaestro/{maestro}', 'HomeController@horarioMaestro')->name('horario.maestro');
+    Route::get('/descargarHorarioMaestro/{maestro}', 'HomeController@descargarHorarioMaestro')->name('descargar.horario.maestro');
 });

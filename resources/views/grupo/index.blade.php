@@ -19,7 +19,7 @@
                             <div class="float-right">
                                 <a href="{{ route('grupos.create') }}" class="btn btn-primary btn-sm float-right"
                                     data-placement="left">
-                                    {{ __('Create New') }}
+                                    {{ __('Crear Grupo') }}
                                 </a>
                             </div>
                         </div>
@@ -41,8 +41,7 @@
                                         <th>Semestre</th>
                                         <th>Jefe de grupo</th>
                                         <th>Total de Alumnos</th>
-
-                                        <th></th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -56,7 +55,7 @@
 											<td>{{ $grupo->total }}</td>
                                             <td>
                                                 <form action="{{ route('grupos.destroy', $grupo->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('grupos.show',$grupo->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('grupos.show',$grupo->id) }}"><i class="fa fa-fw fa-eye"></i> Ver Informacion</a>
                                                     <a class="btn btn-sm btn-warning"
                                                         href="{{ route('grupos.edit', $grupo->id) }}"><i
                                                             class="fa fa-fw fa-edit"></i> Editar</a>

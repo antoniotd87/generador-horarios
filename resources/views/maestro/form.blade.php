@@ -1,9 +1,9 @@
 <div class="box box-info padding-1">
     <div class="box-body">
-        
+
         <div class="form-group">
-            {{ Form::label('uid') }}
-            {{ Form::text('uid', $maestro->uid, ['class' => 'form-control' . ($errors->has('uid') ? ' is-invalid' : ''), 'placeholder' => 'Uid']) }}
+            {{ Form::label('UID') }}
+            {{ Form::text('UID', $maestro->uid, ['class' => 'form-control' . ($errors->has('uid') ? ' is-invalid' : ''), 'placeholder' => 'Uid']) }}
             {!! $errors->first('uid', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
@@ -17,13 +17,13 @@
             {!! $errors->first('grado_de_estudios', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('division') }}
-            {{ Form::text('division', $maestro->division, ['class' => 'form-control' . ($errors->has('division') ? ' is-invalid' : ''), 'placeholder' => 'Division']) }}
+            {{ Form::label('división') }}
+            {{ Form::text('división', $maestro->division, ['class' => 'form-control' . ($errors->has('division') ? ' is-invalid' : ''), 'placeholder' => 'Division']) }}
             {!! $errors->first('division', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
     </div>
     <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Enviar</button>
     </div>
 </div>

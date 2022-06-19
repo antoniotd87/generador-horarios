@@ -20,7 +20,7 @@
                     <td>#</td>
                     <th>Materia</th>
                     <th>Grupo</th>
-                    <td>ACTIONS</td>
+                    <td>Acciones</td>
                 </tr>
             </thead>
             <tbody>

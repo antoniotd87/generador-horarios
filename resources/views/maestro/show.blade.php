@@ -11,22 +11,18 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">Show Maestro</span>
+                            <span class="card-title">Informacion de  {{ $maestro->docente }}</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('maestros.index') }}"> Back</a>
+                            <a class="btn btn-primary" href="{{ route('maestros.index') }}"> Atras</a>
                         </div>
                     </div>
 
                     <div class="card-body">
 
                         <div class="form-group">
-                            <strong>Uid:</strong>
+                            <strong>UID:</strong>
                             {{ $maestro->uid }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Docente:</strong>
-                            {{ $maestro->docente }}
                         </div>
                         <div class="form-group">
                             <strong>Grado De Estudios:</strong>

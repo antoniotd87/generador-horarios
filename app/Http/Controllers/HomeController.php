@@ -65,6 +65,15 @@ class HomeController extends Controller
         return view('horario.por-maestro', compact('maestro', 'dias', 'horas'));
     }
 
+    public function descargarHorarioMaestro(Maestro $maestro)
+    {
+        $dias = Dia::all();
+        $horas = Hora::all();
+
+        $pdf = PDF::loadView('horario.pdf.por-maestro', ['maestro'=>$maestro,'dias'=>$dias,'horas'=>$horas])->setPaper('a4', 'landscape');
+        return $pdf->download('invoice.pdf');
+    }
+
     public function generador()
     {
         Horario::truncate();
@@ -110,11 +119,9 @@ class HomeController extends Controller
                             }
                         }
                     }
-                    //return;
                 }
             }
         }
-        return;
         return redirect()->route('home');
     }
 }

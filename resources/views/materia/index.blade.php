@@ -19,7 +19,7 @@
                             <div class="float-right">
                                 <a href="{{ route('materias.create') }}" class="btn btn-primary btn-sm float-right"
                                     data-placement="left">
-                                    {{ __('Create New') }}
+                                    {{ __('Agregar Materia') }}
                                 </a>
                             </div>
                         </div>
@@ -66,14 +66,14 @@
                                                     method="POST">
                                                     <a class="btn btn-sm btn-primary "
                                                         href="{{ route('materias.show', $materia->id) }}"><i
-                                                            class="fa fa-fw fa-eye"></i> Show</a>
+                                                            class="fa fa-fw fa-eye"></i> Ver</a>
                                                     <a class="btn btn-sm btn-warning"
                                                         href="{{ route('materias.edit', $materia->id) }}"><i
-                                                            class="fa fa-fw fa-edit"></i> Edit</a>
+                                                            class="fa fa-fw fa-edit"></i> Editar</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i
-                                                            class="fa fa-fw fa-trash"></i> Delete</button>
+                                                            class="fa fa-fw fa-trash"></i> Eliminar</button>
                                                 </form>
                                             </td>
                                         </tr>

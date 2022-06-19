@@ -57,7 +57,7 @@ class ClaseController extends Controller
         }
 
         return redirect()->route('maestros.show', ['maestro' => $clase->maestro])
-            ->with('success', 'Clase created successfully.');
+            ->with('success', 'Clase creada correctamente.');
     }
 
     /**
@@ -100,7 +100,7 @@ class ClaseController extends Controller
         $clase->update($request->all());
 
         return redirect()->route('maestros.show', ['maestro' => $clase->maestro])
-            ->with('success', 'Clase updated successfully');
+            ->with('success', 'Clase actualizada correctamente');
     }
 
     /**
@@ -113,6 +113,6 @@ class ClaseController extends Controller
         $clase = Clase::find($id)->delete();
 
         return redirect()->route('clases.index')
-            ->with('success', 'Clase deleted successfully');
+            ->with('success', 'Clase eliminada correctamente');
     }
 }

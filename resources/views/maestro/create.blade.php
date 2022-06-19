@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Create Maestro
+    Agregar nuevo maestro
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Create Maestro</span>
+                        <span class="card-title">Agregar nuevo maestro</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('maestros.store') }}"  role="form" enctype="multipart/form-data">

@@ -53,7 +53,7 @@ class MateriaController extends Controller
         }
 
         return redirect()->route('materias.index')
-            ->with('success', 'Materia created successfully.');
+            ->with('success', 'Materia creada correctamente.');
     }
 
     /**
@@ -100,7 +100,7 @@ class MateriaController extends Controller
         }
 
         return redirect()->route('materias.index')
-            ->with('success', 'Materia updated successfully');
+            ->with('success', 'Materia actualizada correctamente');
     }
 
     /**
@@ -114,10 +114,10 @@ class MateriaController extends Controller
             //code...
             $materia = Materia::find($id)->delete();
             return redirect()->route('materias.index')
-                ->with('success', 'Materia deleted successfully');
+                ->with('success', 'Materia eliminada correctamente');
         } catch (\Throwable $th) {
             return redirect()->route('materias.index')
-                ->with('success', 'No puedes eliminar esta materia por que esta liga a clases o a docentes');
+                ->with('success', 'No puedes eliminar esta materia por que esta ligada a clases o a docentes');
         }
     }
 }

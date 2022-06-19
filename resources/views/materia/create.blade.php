@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Create Materia
+    Crear nueva materia
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Create Materia</span>
+                        <span class="card-title">Crear nueva materia</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('materias.store') }}"  role="form" enctype="multipart/form-data">
