@@ -3,10 +3,10 @@
 @section('content')
     <div class="d-flex justify-content-between align-items-center">
         <div>
-            <h5>Inicio</h5>
+            <h5>Horarios</h5>
         </div>
-        <div><a href="{{ route('horario.generador') }}" class="btn btn-sm btn-primary">Generar Horarios</a>
-        </div>
+{{--         <div><a href="{{ route('horario.generador') }}" class="btn btn-sm btn-primary">Generar Horarios</a>
+        </div> --}}
     </div>
     <br>
     <div class="row">
