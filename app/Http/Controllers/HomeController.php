@@ -54,7 +54,7 @@ class HomeController extends Controller
         $dias = Dia::all();
         $horas = Hora::all();
 
-        $pdf = PDF::loadView('horario.pdf.por-grupo', ['grupo'=>$grupo,'dias'=>$dias,'horas'=>$horas])->setPaper('a4', 'landscape');
+        $pdf = PDF::loadView('horario.pdf.por-grupo', ['grupo' => $grupo, 'dias' => $dias, 'horas' => $horas])->setPaper('a4', 'landscape');
         return $pdf->download('invoice.pdf');
     }
 
@@ -69,8 +69,7 @@ class HomeController extends Controller
     {
         $dias = Dia::all();
         $horas = Hora::all();
-
-        $pdf = PDF::loadView('horario.pdf.por-maestro', ['maestro'=>$maestro,'dias'=>$dias,'horas'=>$horas])->setPaper('a4', 'landscape');
+        $pdf = PDF::loadView('horario.pdf.por-maestro', ['maestro' => $maestro, 'dias' => $dias, 'horas' => $horas])->setPaper('letter', 'landscape');
         return $pdf->download('invoice.pdf');
     }
 
@@ -123,5 +122,46 @@ class HomeController extends Controller
             }
         }
         return redirect()->route('home');
+    }
+    public function generadorMaestro(Maestro $maestro)
+    {
+        DB::table('horarios')->where('maestro_id', $maestro->id)->delete();
+
+        $dias = Dia::all();
+        $aulas = Aula::all();
+        $horas = Hora::all();
+        $horasDelMaestro = $maestro->horarioDisponibles;
+        $clasesDelMaestro = $maestro->clases;
+        foreach ($horasDelMaestro as $horaDisponible) {
+            foreach ($dias as $dia) {
+                foreach ($horas as $hora) {
+                    foreach ($aulas as $aula) {
+                        if ($dia->id == $horaDisponible->dia_id && $hora->id == $horaDisponible->hora_id) {
+                            foreach ($clasesDelMaestro as $clase) {
+                                $horasAsignadasDeLaMateria = $maestro->horarios()->where('materia_id', $clase->materia_id)->where('grupo_id', $clase->grupo_id)->count();
+                                $horasAsignadasDeLaMateriaPorDia = $maestro->horarios()->where('dia_id', $dia->id)->where('materia_id', $clase->materia_id)->count();
+                                $horasDeLaMateria = $clase->materia->horas;
+                                if ($horasAsignadasDeLaMateria < $horasDeLaMateria) {
+                                    if ($horasAsignadasDeLaMateriaPorDia < 3) {
+                                        try {
+                                            $maestro->horarios()->create([
+                                                'materia_id' => $clase->materia_id,
+                                                'grupo_id' => $clase->grupo_id,
+                                                'hora_id' => $hora->id,
+                                                'dia_id' => $dia->id,
+                                                'aula_id' => $aula->id,
+                                            ]);
+                                        } catch (\Throwable $th) {
+                                            //print_r($th->getMessage());
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return redirect()->route('horario.maestro', ['maestro' => $maestro->id]);
     }
 }

@@ -23,7 +23,7 @@
             <td colspan="1" style=" text-align: right">
                 <p style="margin: 0; font-size: 8px;">Edicion 3</p>
                 <p style="margin: 0; font-size: 8px;">Codigo:</p>
-                <p style="margin: 0; font-size: 8px;">FECHA: 8 de Febredo de 2022</p>
+                <p style="margin: 0; font-size: 8px;">FECHA: {{ now()->format('d-m-Y') }}</p>
                 <p style="margin: 0; font-size: 10px; padding: 0; border: 1px solid #000000; width: auto;">AREA: <span
                         style="margin:0;border-left: 1px solid #000000;padding: 4px 6px">DIVISION DE INGENIERIA
                         INFORMATICA</span></p>
@@ -67,22 +67,19 @@
                         $horaf = '';
                     @endphp
                     <td>
-                        @foreach ($maestro->horarios()->where('dia_id', $dia->id)->orderby('hora_id', 'ASC')->get()
+                        @foreach ($maestro->horarios()->where('dia_id', $dia->id)->where('grupo_id', $clase->grupo_id)->where('materia_id', $clase->materia_id)->orderby('hora_id', 'ASC')->get()
     as $horario)
-                            @if ($clase->materia_id == $horario->materia_id && $clase->grupo_id == $horario->grupo_id)
-                                @php
-                                    if (!$inicio) {
-                                        $horainicio = $horario->hora->hora;
-                                        $inicio = true;
-                                    } else {
-                                        $horafin = $horario->hora->hora;
-                                    }
-                                @endphp
-                            @endif
+                            @php
+                                if (!$inicio) {
+                                    $horainicio = $horario->hora->hora;
+                                    $inicio = true;
+                                } else {
+                                    $horafin = $horario->hora->hora;
+                                }
+                            @endphp
                         @endforeach
                         @if ($inicio)
                             @php
-
                                 foreach ($horas as $hora) {
                                     if ($hora->id == $horario->hora_id + 1) {
                                         $horaf = $hora->hora;
@@ -104,46 +101,3 @@
         @endforeach
     </tbody>
 </table>
-{{-- <table class="table">
-    <thead>
-        <tr>
-            <th scope="col" class="text-center">Hora</th>
-            @foreach ($dias as $dia)
-                <th scope="col" class="text-center">{{ $dia->dia }}</th>
-            @endforeach
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($horas as $hora)
-            <tr>
-                <th scope="row" class="text-center">{{ $hora->hora }}</th>
-                @foreach ($dias as $dia)
-                    @php
-                        $claseAsignada = false;
-                        $clase = '';
-                    @endphp
-                    @foreach ($maestro->horarios as $horario)
-                        @if ($horario->dia_id == $dia->id && $horario->hora_id == $hora->id)
-                            @php
-                                $claseAsignada = true;
-                                $clase = $horario;
-                            @endphp
-                        @endif
-                    @endforeach
-                    @if ($claseAsignada)
-                        <th scope="col" class="text-center">
-                            <div>
-                                <p class="m-0">{{ $clase->materia->materia }}</p>
-                                <span>Grupo: {{ $clase->grupo->grupo }}</span>
-                                <span>{{ $clase->aula->aula }}</span>
-                            </div>
-                        </th>
-                    @else
-                        <th scope="col" class="text-center "></th>
-                    @endif
-                @endforeach
-
-            </tr>
-        @endforeach
-    </tbody>
-</table> --}}

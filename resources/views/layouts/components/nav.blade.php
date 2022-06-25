@@ -13,7 +13,7 @@
 
         <div class="nav-logo align-self-center">
             <a class="navbar-brand" href="{{ route('home') }}"><img alt="logo" src="{{ asset('img/logo.png') }}">
-                <span class="navbar-brand-name">HORARIOS ING INF TESFFP</span></a>
+                <span class="navbar-brand-name">CONTROL DE HORARIOS DE LA DIVISIÓN DE INGENIERÍA INFORMÁTICA</span></a>
         </div>
 
         <ul class="navbar-item flex-row nav-dropdowns ml-auto">

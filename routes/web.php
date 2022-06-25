@@ -36,6 +36,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('clases/{clase}/create/{maestro}', 'ClaseController@edit')->name('clases.edit');
 
     Route::get('/generador', 'HomeController@generador')->name('horario.generador');
+    Route::get('/generador/{maestro}', 'HomeController@generadorMaestro')->name('horario.generadorMaestro');
     Route::get('/horarioGrupo/{grupo}', 'HomeController@horarioGrupo')->name('horario.grupo');
     Route::get('/descargarHorarioGrupo/{grupo}', 'HomeController@descargarHorarioGrupo')->name('descargar.horario.grupo');
     Route::get('/horarioMaestro/{maestro}', 'HomeController@horarioMaestro')->name('horario.maestro');

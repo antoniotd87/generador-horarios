@@ -4,6 +4,7 @@
             <h4>Horario Disponible</h4>
         </div>
         <div>
+            <a href="{{ route('horario.maestro', ['maestro'=>$maestro->id]) }}" class="btn btn-success">Ver Horario</a>
             @if (session()->has('message'))
                 <div wire:poll.2s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;">
                     {{ session('message') }} </div>
