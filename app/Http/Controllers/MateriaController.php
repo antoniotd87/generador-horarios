@@ -110,14 +110,12 @@ class MateriaController extends Controller
      */
     public function destroy($id)
     {
-        try {
-            //code...
-            $materia = Materia::find($id)->delete();
-            return redirect()->route('materias.index')
-                ->with('success', 'Materia eliminada correctamente');
-        } catch (\Throwable $th) {
-            return redirect()->route('materias.index')
-                ->with('success', 'No puedes eliminar esta materia por que esta ligada a clases o a docentes');
-        }
+        $materia = Materia::find($id);
+        $materia->clases()->delete();
+        $materia->horarios()->delete();
+        $materia->materiaGrupos()->delete();
+        $materia->delete();
+        return redirect()->route('materias.index')
+            ->with('success', 'Materia eliminada correctamente');
     }
 }

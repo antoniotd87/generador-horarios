@@ -16,11 +16,12 @@
                                 {{ __('Maestro') }}
                             </span>
 
-                             <div class="float-right">
-                                <a href="{{ route('maestros.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Agregar maestro') }}
+                            <div class="float-right">
+                                <a href="{{ route('maestros.create') }}" class="btn btn-primary btn-sm float-right"
+                                    data-placement="left">
+                                    {{ __('Agregar maestro') }}
                                 </a>
-                              </div>
+                            </div>
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -36,10 +37,10 @@
                                     <tr>
                                         <th>No</th>
 
-										<th>Uid</th>
-										<th>Docente</th>
-										<th>Grado De Estudios</th>
-										<th>Division</th>
+                                        <th>Uid</th>
+                                        <th>Docente</th>
+                                        <th>Grado De Estudios</th>
+                                        <th>Division</th>
 
                                         <th></th>
                                     </tr>
@@ -49,18 +50,24 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
 
-											<td>{{ $maestro->uid }}</td>
-											<td>{{ $maestro->docente }}</td>
-											<td>{{ $maestro->grado_de_estudios }}</td>
-											<td>{{ $maestro->division }}</td>
+                                            <td>{{ $maestro->uid }}</td>
+                                            <td>{{ $maestro->docente }}</td>
+                                            <td>{{ $maestro->grado_de_estudios }}</td>
+                                            <td>{{ $maestro->division }}</td>
 
                                             <td>
-                                                <form action="{{ route('maestros.destroy',$maestro->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('maestros.show',$maestro->id) }}"><i class="fa fa-fw fa-eye"></i> Ver Informacion</a>
-                                                    <a class="btn btn-sm btn-warning" href="{{ route('maestros.edit',$maestro->id) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
+                                                <form action="{{ route('maestros.destroy', $maestro->id) }}"
+                                                    method="POST">
+                                                    <a class="btn btn-sm btn-primary "
+                                                        href="{{ route('maestros.show', $maestro->id) }}"><i
+                                                            class="fa fa-fw fa-eye"></i> Ver Informacion</a>
+                                                    <a class="btn btn-sm btn-warning"
+                                                        href="{{ route('maestros.edit', $maestro->id) }}"><i
+                                                            class="fa fa-fw fa-edit"></i> Editar</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Eliminar</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i
+                                                            class="fa fa-fw fa-trash"></i> Eliminar</button>
                                                 </form>
                                             </td>
                                         </tr>

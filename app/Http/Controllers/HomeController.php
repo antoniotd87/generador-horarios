@@ -55,7 +55,7 @@ class HomeController extends Controller
         $horas = Hora::all();
 
         $pdf = PDF::loadView('horario.pdf.por-grupo', ['grupo' => $grupo, 'dias' => $dias, 'horas' => $horas])->setPaper('a4', 'landscape');
-        return $pdf->download('invoice.pdf');
+        return $pdf->download('grupo-'. $grupo->grupo .'.pdf');
     }
 
     public function horarioMaestro(Maestro $maestro)
@@ -70,7 +70,8 @@ class HomeController extends Controller
         $dias = Dia::all();
         $horas = Hora::all();
         $pdf = PDF::loadView('horario.pdf.por-maestro', ['maestro' => $maestro, 'dias' => $dias, 'horas' => $horas])->setPaper('letter', 'landscape');
-        return $pdf->download('invoice.pdf');
+        return $pdf->stream();
+        return $pdf->download($maestro->docente .'.pdf');
     }
 
     public function generador()

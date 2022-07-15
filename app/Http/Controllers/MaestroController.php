@@ -101,7 +101,11 @@ class MaestroController extends Controller
      */
     public function destroy($id)
     {
-        $maestro = Maestro::find($id)->delete();
+        $maestro = Maestro::find($id);
+        $maestro->clases()->delete();
+        $maestro->horarioDisponibles()->delete();
+        $maestro->horarios()->delete();
+        $maestro->delete();
 
         return redirect()->route('maestros.index')
             ->with('success', 'Maestro eliminado correctamente');

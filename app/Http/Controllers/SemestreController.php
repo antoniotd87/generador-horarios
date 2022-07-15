@@ -48,7 +48,7 @@ class SemestreController extends Controller
         $semestre = Semestre::create($request->all());
 
         return redirect()->route('semestres.index')
-            ->with('success', 'Semestre created successfully.');
+            ->with('success', 'Semestre creado.');
     }
 
     /**
@@ -91,7 +91,7 @@ class SemestreController extends Controller
         $semestre->update($request->all());
 
         return redirect()->route('semestres.index')
-            ->with('success', 'Semestre updated successfully');
+            ->with('success', 'Semestre actualizado');
     }
 
     /**
@@ -101,9 +101,15 @@ class SemestreController extends Controller
      */
     public function destroy($id)
     {
-        $semestre = Semestre::find($id)->delete();
-
-        return redirect()->route('semestres.index')
-            ->with('success', 'Semestre deleted successfully');
+        try {
+            $semestre = Semestre::find($id);
+            $semestre->grupos()->delete();
+            $semestre->delete();
+            return redirect()->route('semestres.index')
+                ->with('success', 'Semestre eliminado exitosamente');
+        } catch (\Throwable $th) {
+            return redirect()->route('semestres.index')
+                ->with('success', 'No se puede elminiar el semestre, esta unido a una materia');
+        }
     }
 }

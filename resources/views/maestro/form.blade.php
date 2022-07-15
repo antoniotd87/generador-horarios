@@ -3,7 +3,7 @@
 
         <div class="form-group">
             {{ Form::label('UID') }}
-            {{ Form::text('UID', $maestro->uid, ['class' => 'form-control' . ($errors->has('uid') ? ' is-invalid' : ''), 'placeholder' => 'Uid']) }}
+            {{ Form::text('uid', $maestro->uid, ['class' => 'form-control' . ($errors->has('uid') ? ' is-invalid' : ''), 'placeholder' => 'Uid']) }}
             {!! $errors->first('uid', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
@@ -18,7 +18,7 @@
         </div>
         <div class="form-group">
             {{ Form::label('división') }}
-            {{ Form::text('división', $maestro->division, ['class' => 'form-control' . ($errors->has('division') ? ' is-invalid' : ''), 'placeholder' => 'Division']) }}
+            {{ Form::text('division', $maestro->division, ['class' => 'form-control' . ($errors->has('division') ? ' is-invalid' : ''), 'placeholder' => 'Division']) }}
             {!! $errors->first('division', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
