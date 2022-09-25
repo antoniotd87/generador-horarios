@@ -48,7 +48,7 @@
             <th>GRUPO</th>
             <th>HORAS</th>
             @foreach ($dias as $dia)
-                <th>{{ Str::upper($dia->dia) }}</th>
+                <th style="width: 125px">{{ Str::upper($dia->dia) }}</th>
             @endforeach
         </tr>
     </thead>

@@ -11,6 +11,7 @@ use App\Models\Maestro;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\PDF;
+use Exception;
 
 class HomeController extends Controller
 {
@@ -55,7 +56,7 @@ class HomeController extends Controller
         $horas = Hora::all();
 
         $pdf = PDF::loadView('horario.pdf.por-grupo', ['grupo' => $grupo, 'dias' => $dias, 'horas' => $horas])->setPaper('a4', 'landscape');
-        return $pdf->download('grupo-'. $grupo->grupo .'.pdf');
+        return $pdf->download('grupo-' . $grupo->grupo . '.pdf');
     }
 
     public function horarioMaestro(Maestro $maestro)
@@ -70,48 +71,107 @@ class HomeController extends Controller
         $dias = Dia::all();
         $horas = Hora::all();
         $pdf = PDF::loadView('horario.pdf.por-maestro', ['maestro' => $maestro, 'dias' => $dias, 'horas' => $horas])->setPaper('letter', 'landscape');
-        return $pdf->stream();
-        return $pdf->download($maestro->docente .'.pdf');
+        return $pdf->download($maestro->docente . '.pdf');
     }
 
     public function generador()
     {
         Horario::truncate();
-        $maestros_id = DB::table('maestros')
-            ->join('horario_disponible', 'maestros.id', '=', 'horario_disponible.maestro_id')
-            ->select(['maestros.id', DB::raw('count(*) as totalHoras, maestros.id')])
+        $maestros = Maestro::join('horario_disponible', 'maestros.id', '=', 'horario_disponible.maestro_id')
+            ->select(['maestros.id', 'maestros.docente', DB::raw('count(*) as totalHoras, maestros.id')])
             ->groupBy('maestros.id')
-            ->orderBy('totalHoras', 'ASC')
             ->get();
+        foreach ($maestros as $key => $mase) {
+            $horasTotales = 0;
+            foreach ($mase->clases as $class) {
+                $horasTotales += (int)$class->materia->horas;
+            }
+            $maestros[$key]->restantes = $mase->totalHoras - $horasTotales;
+        }
 
+        for ($i = 0; $i < count($maestros); $i++) {
+            for ($j = 0; $j < count($maestros) - 1; $j++) {
+                if ($maestros[$j]->restantes > $maestros[$j + 1]->restantes) {
+                    $temporal = $maestros[$j];
+                    $maestros[$j] = $maestros[$j + 1];
+                    $maestros[$j + 1] = $temporal;
+                }
+            }
+        }
+
+        $ma = $maestros->toArray();
+        // dd( $maestros );
+        $this->generarHorarios($ma, 3);
+
+        // Revisar si cada maestro tiene todas sus horas
+        $newMaestros = $this->revisarHorarios($maestros);
+        // $newM = $this->shuffle_assoc($newMaestros);
+        if (count($newMaestros) > 0) {
+            $this->generarHorarios($newMaestros, 4);
+            // Revisar si cada maestro tiene todas sus horas
+            $newMaestros = $this->revisarHorarios($maestros);
+
+            // $newM = $this->shuffle_assoc($newMaestros);
+
+            $this->generarHorarios($newMaestros, 5);
+            // Revisar si cada maestro tiene todas sus horas
+            $newMaestros = $this->revisarHorarios($maestros);
+            dd($newMaestros);
+        }
+        // return redirect()->route('home');
+    }
+
+    function shuffle_assoc(&$array)
+    {
+        $keys = array_keys($array);
+
+        shuffle($keys);
+
+        foreach ($keys as $key) {
+            $new[$key] = $array[$key];
+        }
+
+        $array = $new;
+
+        return $array;
+    }
+
+    public function generarHorarios($maestros, $horaLimites)
+    {
         $dias = Dia::all();
+        $numberDias = [0, 1, 2, 3, 4];
+        shuffle($numberDias);
         $aulas = Aula::all();
+        $numberAulas = [0, 1, 2, 3, 4, 5, 6];
+        shuffle($numberAulas);
         $horas = Hora::all();
-        foreach ($maestros_id as $maestro_id) {
-            $maestro = Maestro::find($maestro_id->id);
+
+        foreach ($maestros as $maestro_id) {
+            $maestro = Maestro::find($maestro_id['id']);
+            $errores = [];
             $horasDelMaestro = $maestro->horarioDisponibles;
             $clasesDelMaestro = $maestro->clases;
             foreach ($horasDelMaestro as $horaDisponible) {
-                foreach ($dias as $dia) {
+                foreach ($numberDias as $diaN) {
                     foreach ($horas as $hora) {
-                        foreach ($aulas as $aula) {
-                            if ($dia->id == $horaDisponible->dia_id && $hora->id == $horaDisponible->hora_id) {
+                        foreach ($numberAulas as $aulaN) {
+                            if ($dias[$diaN]->id == $horaDisponible->dia_id && $hora->id == $horaDisponible->hora_id) {
                                 foreach ($clasesDelMaestro as $clase) {
                                     $horasAsignadasDeLaMateria = $maestro->horarios()->where('materia_id', $clase->materia_id)->where('grupo_id', $clase->grupo_id)->count();
-                                    $horasAsignadasDeLaMateriaPorDia = $maestro->horarios()->where('dia_id', $dia->id)->where('materia_id', $clase->materia_id)->count();
+                                    $horasAsignadasDeLaMateriaPorDia = $maestro->horarios()->where('dia_id', $dias[$diaN]->id)->where('materia_id', $clase->materia_id)->count();
                                     $horasDeLaMateria = $clase->materia->horas;
                                     if ($horasAsignadasDeLaMateria < $horasDeLaMateria) {
-                                        if ($horasAsignadasDeLaMateriaPorDia < 3) {
+                                        if ($horasAsignadasDeLaMateriaPorDia <= $horaLimites) {
                                             try {
                                                 $maestro->horarios()->create([
                                                     'materia_id' => $clase->materia_id,
                                                     'grupo_id' => $clase->grupo_id,
                                                     'hora_id' => $hora->id,
-                                                    'dia_id' => $dia->id,
-                                                    'aula_id' => $aula->id,
+                                                    'dia_id' => $dias[$diaN]->id,
+                                                    'aula_id' => $aulas[$aulaN]->id,
                                                 ]);
-                                            } catch (\Throwable $th) {
-                                                //print_r($th->getMessage());
+                                            } catch (Exception $th) {
+                                                array_push($errores, $th->getMessage());
                                             }
                                         }
                                     }
@@ -122,8 +182,37 @@ class HomeController extends Controller
                 }
             }
         }
-        return redirect()->route('home');
     }
+
+    public function revisarHorarios($maestros)
+    {
+        $errores = [];
+        $newMaestros = [];
+        foreach ($maestros as $maestro) {
+            // Consultar el horaio asignado y ver si el numer de horas es iguala l de la materoa
+            // dd($maestro->horarios()->groupBy('materia_id', 'grupo_id')->get());
+            $horas = $maestro->horarios()->groupBy('materia_id', 'grupo_id')->get();
+            $falla = false;
+            foreach ($maestro->clases as $clase) {
+                foreach ($horas as $hora) {
+                    if ($hora->grupo_id == $clase->grupo_id && $hora->materia_id == $clase->materia_id) {
+                        $thoras = $maestro->horarios()->where('materia_id', $clase->materia_id)->where('grupo_id', $clase->grupo_id)->count();
+                        $choras = $clase->materia->horas;
+                        if (!($thoras == $choras)) {
+                            $falla = true;
+                            array_push($errores, "Error en horas Asig:" . $thoras . " Clase:" . $choras . " " . $clase->materia->materia . " " . $maestro->docente . " " . $clase->grupo_id);
+                        }
+                    }
+                }
+            }
+            if ($falla) {
+                array_push($newMaestros, $maestro);
+            }
+        }
+
+        return $newMaestros;
+    }
+
     public function generadorMaestro(Maestro $maestro)
     {
         DB::table('horarios')->where('maestro_id', $maestro->id)->delete();

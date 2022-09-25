@@ -9,7 +9,7 @@
             <a href="{{ route('horario.generadorMaestro', ['maestro' => $maestro->id]) }}" class="btn btn-success">Generar
                 Horario</a>
             <a href="{{ route('descargar.horario.maestro', ['maestro' => $maestro->id]) }}"
-                class="btn btn-sm btn-primary">Descargar Horario</a>
+                class="btn btn-sm btn-primary" target="_blank">Descargar Horario</a>
         </div>
     </div>
     <br>
@@ -27,7 +27,13 @@
                 <tbody>
                     @foreach ($horas as $hora)
                         <tr>
-                            <th scope="row" class="text-center">{{ $hora->hora }}</th>
+                            @php
+                                $hourStart = \Carbon\Carbon::parse(substr($hora->hora, 0, -3))->format('g:i A');
+                                $hourEnd = \Carbon\Carbon::parse(substr($hora->hora, 0, -3))
+                                    ->addHour()
+                                    ->format('g:i A');
+                            @endphp
+                            <th scope="row" class="text-center">{{ $hourStart . ' - ' . $hourEnd }}</th>
                             @foreach ($dias as $dia)
                                 @php
                                     $claseAsignada = false;

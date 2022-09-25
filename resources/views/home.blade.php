@@ -5,8 +5,8 @@
         <div>
             <h5>Horarios</h5>
         </div>
-{{--         <div><a href="{{ route('horario.generador') }}" class="btn btn-sm btn-primary">Generar Horarios</a>
-        </div> --}}
+        <div><a href="{{ route('horario.generador') }}" class="btn btn-sm btn-primary">Generar Horarios</a>
+        </div>
     </div>
     <br>
     <div class="row">
