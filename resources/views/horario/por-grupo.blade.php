@@ -12,12 +12,12 @@
     <br>
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <table class="table">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col" class="text-center">Hora</th>
+                        <th scope="col" colspan="2" class="text-center">Hora</th>
                         @foreach ($dias as $dia)
-                            <th scope="col" class="text-center">{{ $dia->dia }}</th>
+                            <th scope="col" colspan="2" class="text-center">{{ $dia->dia }}</th>
                         @endforeach
                     </tr>
                 </thead>
@@ -30,7 +30,7 @@
                                     ->addHour()
                                     ->format('g:i A');
                             @endphp
-                            <th scope="row" class="text-center">{{ $hourStart . ' - ' . $hourEnd }}</th>
+                            <th scope="row" class="text-center" colspan="2">{{ $hourStart . ' - ' . $hourEnd }}</th>
                             @foreach ($dias as $dia)
                                 @php
                                     $claseAsignada = false;
@@ -46,7 +46,7 @@
                                     @endif
                                 @endforeach
                                 @if ($claseAsignada)
-                                    <th scope="col" class="text-center">
+                                    <th scope="col" class="text-center" colspan="2">
                                         <div>
                                             <h6 class="m-0"><strong>{{ $clase->materia->materia }}</strong></h6>
                                             <span class="m-0">{{ $clase->maestro->docente }}</span>
@@ -54,7 +54,7 @@
                                         </div>
                                     </th>
                                 @else
-                                    <th scope="col" class="text-center"></th>
+                                    <th scope="col" colspan="2" class="text-center"></th>
                                 @endif
                             @endforeach
 

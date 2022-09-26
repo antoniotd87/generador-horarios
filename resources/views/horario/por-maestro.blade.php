@@ -6,8 +6,6 @@
             <h5>Horario del docente: {{ $maestro->docente }}</h5>
         </div>
         <div>
-            <a href="{{ route('horario.generadorMaestro', ['maestro' => $maestro->id]) }}" class="btn btn-success">Generar
-                Horario</a>
             <a href="{{ route('descargar.horario.maestro', ['maestro' => $maestro->id]) }}"
                 class="btn btn-sm btn-primary" target="_blank">Descargar Horario</a>
         </div>
@@ -15,7 +13,7 @@
     <br>
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <table class="table">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th scope="col" class="text-center">Hora</th>

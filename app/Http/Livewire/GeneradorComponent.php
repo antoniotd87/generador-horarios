@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Livewire;
+
+use Livewire\Component;
 
 use App\Models\Aula;
 use App\Models\Dia;
@@ -8,72 +10,15 @@ use App\Models\Grupo;
 use App\Models\Hora;
 use App\Models\Horario;
 use App\Models\Maestro;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Barryvdh\DomPDF\Facade\PDF;
 use Exception;
+use Illuminate\Support\Facades\DB;
 
-class HomeController extends Controller
+class GeneradorComponent extends Component
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function render()
     {
-        $this->middleware('auth');
+        return view('livewire.generador-component');
     }
-
-    public function inicio()
-    {
-        return redirect()->route('home');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
-    {
-        $grupos = Grupo::all();
-        $maestros = Maestro::all();
-        return view('home', compact('grupos', 'maestros'));
-    }
-
-    public function horarioGrupo(Grupo $grupo)
-    {
-        $dias = Dia::all();
-        $horas = Hora::all();
-
-        return view('horario.por-grupo', compact('grupo', 'dias', 'horas'));
-    }
-
-    public function descargarHorarioGrupo(Grupo $grupo)
-    {
-        $dias = Dia::all();
-        $horas = Hora::all();
-
-        $pdf = PDF::loadView('horario.pdf.por-grupo', ['grupo' => $grupo, 'dias' => $dias, 'horas' => $horas])->setPaper('a4', 'landscape');
-        return $pdf->download('grupo-' . $grupo->grupo . '.pdf');
-    }
-
-    public function horarioMaestro(Maestro $maestro)
-    {
-        $dias = Dia::all();
-        $horas = Hora::all();
-        return view('horario.por-maestro', compact('maestro', 'dias', 'horas'));
-    }
-
-    public function descargarHorarioMaestro(Maestro $maestro)
-    {
-        $dias = Dia::all();
-        $horas = Hora::all();
-        $pdf = PDF::loadView('horario.pdf.por-maestro', ['maestro' => $maestro, 'dias' => $dias, 'horas' => $horas])->setPaper('letter', 'landscape');
-        return $pdf->download($maestro->docente . '.pdf');
-    }
-
     public function generador()
     {
         Horario::truncate();
@@ -101,7 +46,6 @@ class HomeController extends Controller
         // Generar el horario por primera vez
         $ma = $maestros->toArray();
         $this->generarHorarios($ma, 3);
-
         // Revisar si cada maestro tiene todas sus horas
         $newMaestros = $this->revisarHorarios($maestros);
         // En caso de que si, repetir el proceso hasta 2 veces
@@ -115,15 +59,15 @@ class HomeController extends Controller
                 // Revisar si cada maestro tiene todas sus horas
                 $newMaestros = $this->revisarHorarios($maestros);
                 if (count($newMaestros) > 0) {
-                    return 'Error, nueva peticion';
+                    return 2;
                 } else {
-                    return 'Correcto';
+                    return 1;
                 }
             } else {
-                return 'Correcto';
+                return 1;
             }
         } else {
-            return 'Correcto';
+            return 1;
         }
         // return redirect()->route('home');
     }
